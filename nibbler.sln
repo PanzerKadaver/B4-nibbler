@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_nibbler_QT", "lib_nibbler_QT\lib_nibbler_QT.vcxproj", "{53B37E7F-A95F-4A89-BFB6-D41CFAFF0B7C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nibbler", "nibbler\nibbler.vcxproj", "{62E2D8AF-3ABB-4775-9145-F4D8FE03657A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53B37E7F-A95F-4A89-BFB6-D41CFAFF0B7C} = {53B37E7F-A95F-4A89-BFB6-D41CFAFF0B7C}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53B37E7F-A95F-4A89-BFB6-D41CFAFF0B7C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{53B37E7F-A95F-4A89-BFB6-D41CFAFF0B7C}.Debug|Win32.Build.0 = Debug|Win32
+		{53B37E7F-A95F-4A89-BFB6-D41CFAFF0B7C}.Release|Win32.ActiveCfg = Release|Win32
+		{53B37E7F-A95F-4A89-BFB6-D41CFAFF0B7C}.Release|Win32.Build.0 = Release|Win32
+		{62E2D8AF-3ABB-4775-9145-F4D8FE03657A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{62E2D8AF-3ABB-4775-9145-F4D8FE03657A}.Debug|Win32.Build.0 = Debug|Win32
+		{62E2D8AF-3ABB-4775-9145-F4D8FE03657A}.Release|Win32.ActiveCfg = Release|Win32
+		{62E2D8AF-3ABB-4775-9145-F4D8FE03657A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
