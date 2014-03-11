@@ -2,7 +2,7 @@
 # define NIBBLER_LIBRARY_HPP_
 
 # if defined(__GNUG__)
-#  include
+#  include <dlfcn.h>
 #elif defined(_MSC_VER)
 #  include <Windows.h>
 #  include <atlstr.h>
