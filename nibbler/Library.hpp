@@ -1,25 +1,43 @@
 #ifndef NIBBLER_LIBRARY_HPP_
 # define NIBBLER_LIBRARY_HPP_
 
-#  include <dlfcn.h>
-
 # if defined(__GNUG__)
-
+#  include <dlfcn.h>
 #elif defined(_MSC_VER)
 #  include <Windows.h>
 #  include <atlstr.h>
+#  include <string>
 # else
 #  error G++ or MS compiler required
 #endif
 
 namespace Library
 {
-void	*open(const char *filename)
+
+	void convert_name(std::string &dllName)
+	{
+# if defined(__GNUG__)
+		std::cout << str << std::endl;
+		return str;
+# elif defined(_MSC_VER)
+		const size_t pos = dllName.rfind(".so");
+		
+		if (pos != std::string::npos)
+			dllName.replace(pos, std::string::npos, ".dll");
+# else
+#		error G++ or MS compiler required
+#endif
+	}
+
+	void	*open(const char *filename)
 	{
 # if defined(__GNUG__)
 		return dlopen(filename, RTLD_LAZY);
 # elif defined(_MSC_VER)
-		return LoadLibrary(CStringW(filename));
+		std::string dllName(filename);
+		convert_name(dllName);
+		std::cout << dllName << std::endl;
+		return LoadLibrary(CStringW(dllName.c_str()));
 # else
 #		error G++ or MS compiler required
 # endif

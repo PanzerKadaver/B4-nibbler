@@ -1,9 +1,7 @@
 #include <iostream>
-
-#include <dlfcn.h>
 #include <cstdlib>
+
 #include "Library.hpp"
-#define LIB_EXT .so
 
 void		pause();
 int			appRun();
