@@ -13,22 +13,15 @@
 
 namespace Library
 {
-
+# if defined(_MSC_VER)
 	void convert_name(std::string &dllName)
 	{
-# if defined(__GNUG__)
-		std::cout << str << std::endl;
-		return str;
-# elif defined(_MSC_VER)
-		const size_t pos = dllName.rfind(".so");
-		
-		if (pos != std::string::npos)
-			dllName.replace(pos, std::string::npos, ".dll");
-# else
-#		error G++ or MS compiler required
-#endif
-	}
+	  const size_t pos = dllName.rfind(".so");
 
+	  if (pos != std::string::npos)
+	    dllName.replace(pos, std::string::npos, ".dll");
+	}
+#endif
 	void	*open(const char *filename)
 	{
 # if defined(__GNUG__)
