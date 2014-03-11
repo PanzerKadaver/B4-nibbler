@@ -17,17 +17,25 @@ int			main()
 
 int			appRun()
 {
+	typedef void (*func)();
 	void	*libhandler;
-	void	*test1;;
+	func	test1;
 
 	if (!(libhandler = Library::open("lib_nibbler_QT")))
+	{
 		std::cerr << Library::error() << std::endl;
+		abort();
+	}
 	else
 		std::cout << "Lib sucessfully loaded" << std::endl;
-	if (!(test1 = Library::sym(libhandler, "ex_test")))
+	if (!(test1 = reinterpret_cast<func>(Library::sym(libhandler, "ex_test"))))
+	{
 		std::cerr << Library::error() << std::endl;
+		abort();
+	}
 	else
 		std::cout << "Function loaded" << std::endl;
+	test1();
 	return 0;
 }
 
