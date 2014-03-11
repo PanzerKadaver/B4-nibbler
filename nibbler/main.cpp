@@ -38,6 +38,13 @@ int			appRun()
 	else
 		std::cout << "Function loaded" << std::endl;
 	test1();
+	if (!Library::close(libhandler))
+		std::cout << "Library unloaded" << std::endl;
+	else
+	{
+		std::cerr << Library::error() << std::endl;
+		abort();
+	}
 	return 0;
 }
 

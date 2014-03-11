@@ -21,7 +21,8 @@ namespace Library
 	  if (pos != std::string::npos)
 	    dllName.replace(pos, std::string::npos, ".dll");
 	}
-#endif
+# endif
+
 	void	*open(const char *filename)
 	{
 # if defined(__GNUG__)
