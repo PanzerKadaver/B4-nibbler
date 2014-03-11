@@ -1,6 +1,9 @@
 #include <iostream>
 
+#include <dlfcn.h>
+#include <cstdlib>
 #include "Library.hpp"
+#define LIB_EXT .so
 
 void		pause();
 int			appRun();
@@ -21,7 +24,7 @@ int			appRun()
 	void	*libhandler;
 	func	test1;
 
-	if (!(libhandler = Library::open("lib_nibbler_QT")))
+	if (!(libhandler = Library::open("./lib_nibbler_QT.so")))
 	{
 		std::cerr << Library::error() << std::endl;
 		abort();

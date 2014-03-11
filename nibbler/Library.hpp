@@ -1,8 +1,10 @@
 #ifndef NIBBLER_LIBRARY_HPP_
 # define NIBBLER_LIBRARY_HPP_
 
-# if defined(__GNUG__)
 #  include <dlfcn.h>
+
+# if defined(__GNUG__)
+
 #elif defined(_MSC_VER)
 #  include <Windows.h>
 #  include <atlstr.h>
@@ -12,7 +14,7 @@
 
 namespace Library
 {
-	void	*open(const char *filename)
+void	*open(const char *filename)
 	{
 # if defined(__GNUG__)
 		return dlopen(filename, RTLD_LAZY);
@@ -44,19 +46,19 @@ namespace Library
 
 		if((error_code = GetLastError()) == 0)
 			return((char *)0);
-		/*POSIX dlerror call needs to report no error(null) 
+		/*POSIX dlerror call needs to report no error(null)
 		when it is called 2nd time consequently, so clear error*/
 		SetLastError(0);
 		/*format the error string*/
 		len = sprintf_s(errstr, "Error <%d>", error_code);
-		len += FormatMessage( 
+		len += FormatMessage(
 			FORMAT_MESSAGE_FROM_SYSTEM,
 			NULL,
 			error_code,
 			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), /* Default language */
 			(LPTSTR) errstr + len,
 			sizeof(errstr) - len,
-			NULL 
+			NULL
 			);
 		/*replace \r\n*/
 		if (len > 1 && errstr[len-2] == '\r' && errstr[len-1] == '\n') {
