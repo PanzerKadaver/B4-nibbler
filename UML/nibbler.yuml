@@ -1,4 +1,4 @@
-// A executer sur http://www.yuml.me/diagram/scruffy/class/draw
+// Utiliser yumla to generate the uml
 // Doc sur http://www.yuml.me/diagram/scruffy/class/samples
 // PAS DE SAUT DE LIGNE
 // Init Class Diagram
@@ -21,7 +21,7 @@
 [Nibbler]-[Game]
 [Game]-[GameManager]
 [Game]-[Action]
-[Game]-[ALibGraphic]
+[GameManager]-[ALibGraphic]
 //[ALibGraphic]-[LibGraphicFactory]
 [ALibGraphic]<-[QT]
 [ALibGraphic]<-[SFML]

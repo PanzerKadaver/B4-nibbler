@@ -1,0 +1,127 @@
+#!/bin/sh
+## yumla.sh for yumla in /home/alois/Code/sh/yumla
+##
+## Made by alois
+## Login   <alois@epitech.net>
+##
+## Started on  Wed Mar 12 16:58:23 2014 alois
+## Last update Mon Mar 17 23:37:33 2014 alois
+##
+
+URL="http://yuml.me/diagram/"
+UML=""
+DEL=", "
+
+VERBOSE=false
+FORMAT=png
+TYPE=class
+STYLE=scruffy
+INPUT=
+OUTPUT=
+
+removeLastChar() {
+    UML=${UML%?}
+}
+
+formatURL() {
+    URL=$URL$STYLE"/"$TYPE"/"
+}
+
+downloadUML() {
+    if [ ! $VERBOSE ]; then
+    	wget -nv "$URL$UML.$FORMAT" -O "$OUTPUT.$FORMAT"
+    else
+    	wget -v "$URL$UML.$FORMAT" -O "$OUTPUT.$FORMAT"
+    fi
+}
+
+skipComment() {
+    if [ ! $1 = "//" ]; then
+	UML=$UML$@$DEL
+    fi
+}
+
+throwReadError() {
+    if [ ! -f $@ ]; then
+	echo "$@ : does not exists"
+	exit 1
+    elif [ ! -r $@ ]; then
+	echo "$@ : can not read"
+	exit 2
+    fi
+}
+
+readFile() {
+    throwReadError $@
+    while read line
+    do
+	skipComment $line
+    done <"$file"
+}
+
+printUsage() {
+    if [ -z "$@" ]; then
+	echo "[USAGE] : ./yumla -i ./path/to/uml.yuml -o uml"
+	exit 1
+    fi
+}
+
+# boring instead of nofunky ?
+
+#checkParam() {
+#    if [ $FORMAT != "png" && $ $FORMAT != "jpg" && $FORMAT != "pdf" && $FORMAT != "svg" && $FORMAT != "json" ]; then
+#	echo "format supported : png|pdf|jpg|json|svg"
+#	exit 1
+#    fi
+#    if [ $TYPE != "class" && $TYPE != "activity" && $TYPE != "usecase" ]; then
+#	echo "type supported : class|activity|usecase"
+#	exit 1
+#    fi
+#    if [ $STYLE != "scruffy" && $STYLE != "nofunky" && $STYLE != "plain"]; then
+#	echo "style supported : scruffy|nofunky|plain"
+#	exit 1
+#    fi
+#}
+
+
+# thanks
+#  @urban-vagabond http://stackoverflow.com/a/7948533/1248177
+#  @wich http://stackoverflow.com/a/22459024/1248177
+getFlags() {
+    if [ $? != 0 ]; then
+	echo "Terminating ..." >&2
+	exit 1
+    fi
+
+    TEMP=`getopt -o vf:t:s:i:o: --long verbose,format:,type:,style:,input:,output: -n 'yumla' -- "$@"`
+
+    eval set -- "$TEMP"
+
+    while true; do
+	case "$1" in
+	    -v | --verbose ) VERBOSE=true; shift ;;
+	    -f | --format ) FORMAT="$2"; shift 2 ;;
+	    -t | --type ) TYPE="$2"; shift 2 ;;
+	    -s | --style ) STYLE="$2"; shift 2 ;;
+	    -i | --input ) INPUT="$2"; shift 2 ;;
+	    -o | --output ) OUTPUT="$2"; shift 2 ;;
+	    -- ) shift; break ;;
+	    -*) break ;;
+	    * ) break ;;
+	esac
+    done
+}
+
+getFlags $@
+file=$INPUT
+
+#checkParam
+
+printUsage $file
+readFile $file
+formatURL
+removeLastChar
+removeLastChar
+downloadUML
+
+echo "$OUTPUT.$FORMAT is ready to use."
