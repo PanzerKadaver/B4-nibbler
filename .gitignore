@@ -185,3 +185,8 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+
+*.dll
+*.lib
+*.exp
+*.exe
