@@ -5,15 +5,9 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 14:27:34 2014 alois
-// Last update Tue Mar 18 14:32:12 2014 alois
+// Last update Tue Mar 18 15:48:07 2014 alois
 //
 
 #include "Point.hpp"
 
-Point::Point(int x, int y)
-{
-  this->coord.first = x;
-  this->coord.last = y;
-}
-
-
+// we dont need it for now
