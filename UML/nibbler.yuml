@@ -8,7 +8,7 @@
 [Action|move();turnRight();turnLeft()]
 [ALibGraphic]
 [Land|-land;-width;-height|+Land();-addBorder();+init()]
-[Point|+char content;+pair coord|+getCoord();+setCoord()]
+[Point|-char content;-pair coord|+Point();+getContent();+setContent();+getCoord();+setCoord()]
 [Trad|-map|+getKFromV();+getVFromK()]
 // 
 // Link Class Diagram
