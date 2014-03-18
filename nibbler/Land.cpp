@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 01:11:32 2014 alois
-// Last update Tue Mar 18 01:31:03 2014 alois
+// Last update Tue Mar 18 19:33:17 2014 alois
 //
 
 #include "Land.hpp"
@@ -20,9 +20,10 @@ Land::Land(unsigned int w, unsigned int h) : width(w), height(h)
   init();
 }
 
+// faut que l on decide si on taf avec des uint ou des int
 void Land::addBorder()
 {
-  Point border; // wants Point need border;
+  Point *border = new Point('b'); // not sure
   for (unsigned int j = 0; j < this->height; ++j)
     {
       Land[0][j] = border;
@@ -41,7 +42,7 @@ void Land::init()
     {
       for (size_t j = 0; j < this->height; ++j)
 	{
-	  Point point(i, j); // ??
+	  Point point(i, j); // not sure
 	  Land[i][j] = point;
 	}
     }

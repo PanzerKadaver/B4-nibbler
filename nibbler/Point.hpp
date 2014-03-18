@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 00:26:40 2014 alois
-// Last update Tue Mar 18 15:55:30 2014 alois
+// Last update Tue Mar 18 19:30:39 2014 alois
 //
 
 #ifndef POINT_HPP_
@@ -16,7 +16,9 @@
 class Point
 {
 public:
-  Point(int x, int y) { coord.first = x; coord.last = y; }
+  Point(char c) : content(c) {}
+  Point(std::pair<int, int> p) : content(' ') { coord = p; }
+  Point(int x, int y) { coord.first = x; coord.second = y; }
   ~Point() {}
 
   char			GetContent() const { return content; }
