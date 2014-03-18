@@ -12,7 +12,7 @@
 [Coord]
 [Coord2D|x;y|coord()]
 [Coord3D|x;y;z|coord()]
-[Point|+IContent;+Coord;+image]
+[Point|+IContent;+Coord]
 [IContent]
 [AFoodItem|+value]
 [ASnakeMember|+pos]
