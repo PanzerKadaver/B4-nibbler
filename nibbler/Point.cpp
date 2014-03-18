@@ -5,9 +5,13 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 14:27:34 2014 alois
-// Last update Tue Mar 18 15:48:07 2014 alois
+// Last update Tue Mar 18 15:54:06 2014 alois
 //
 
 #include "Point.hpp"
 
-// we dont need it for now
+ostream &operator<<(ostream &o, const Point &pt)
+{
+  o << pt.GetContent();
+  return o;
+}

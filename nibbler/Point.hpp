@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 00:26:40 2014 alois
-// Last update Tue Mar 18 15:48:17 2014 alois
+// Last update Tue Mar 18 15:55:30 2014 alois
 //
 
 #ifndef POINT_HPP_
@@ -24,8 +24,8 @@ public:
   int			GetX() const { return coord.first; }
   int			GetY() const { return coord.second; }
 
-  void			SetContent(char c) { content = ic; }
-  void			SetCoord(std::pair &c) { coord = c; }
+  void			SetContent(char c) { content = c; }
+  void			SetCoord(std::pair<int, int> &pair) { coord = pair; }
   void			SetX(int x) { coord.first = x; }
   void			SetY(int y) { coord.second = y; }
 
@@ -34,6 +34,6 @@ private:
   std::pair<int, int>	coord;
 };
 
-
+ostream &operator<<(ostream &, const Point &);
 
 #endif
