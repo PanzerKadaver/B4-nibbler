@@ -5,27 +5,29 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 00:26:40 2014 alois
-// Last update Tue Mar 18 00:32:53 2014 alois
+// Last update Tue Mar 18 14:27:55 2014 alois
 //
 
 #ifndef POINT_HPP_
 # define POINT_HPP_
 
+# include <utility>
+
 class Point
 {
 public:
-  Point() {}
+  Point(int x, int y);
   ~Point() {}
 
-  IContent	GetContent() const { return content; }
-  Coord		GetCoord() const { return coord; }
+  char			GetContent() const { return content; }
+  std::pair<int,int>	GetCoord() const { return coord; }
 
-  void		SetContent(const IContent &ic) { content = ic; }
-  void		SetCoord(const Coord &c) { coord = c; }
+  void			SetContent(char c) { content = ic; }
+  void			SetCoord(std::pair &c) { coord = c; }
 
 private:
-  IContent	content;
-  Coord		coord;
+  char			content;
+  std::pair<int, int>	coord;
 };
 
 #endif

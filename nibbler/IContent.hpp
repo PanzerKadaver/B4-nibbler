@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Mon Mar 17 23:40:48 2014 alois
-// Last update Tue Mar 18 00:34:41 2014 alois
+// Last update Tue Mar 18 12:40:55 2014 alois
 //
 
 #ifndef ICONTENT_HPP_
@@ -21,7 +21,7 @@ class IContent
 {
 public:
   virtual ~IContent {}
-  virtual void LaunchEvent() = 0; // increase the score, loose the game, etc.
+  virtual void LaunchEvent() = 0; // increase the score, lose the game, etc.
 };
 
 #endif
