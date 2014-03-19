@@ -5,8 +5,8 @@
 
 class GameManager
 {
-  GameManager();
-  ~GameManager();
+  GameManager() {}
+  ~GameManager() {}
 
   void	move();
   void	turn_func(char);

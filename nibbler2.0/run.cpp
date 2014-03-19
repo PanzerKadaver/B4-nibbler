@@ -1,9 +1,12 @@
+
+// we should put this to run.hpp
 #include "Land.hpp"
 #include "Point.hpp"
 #include "Traductor.hpp"
 #include "run.hpp"
 
 #include <unistd.h> // DEBUG
+
 int		change_dir(int dir, char t)
 {
   bool isLeft = (t == 'l');
@@ -15,23 +18,27 @@ int		change_dir(int dir, char t)
   else if (dir == 0)
     dir = isLeft ? 3 : 2;
 
-/*
-  if (dir == 2 || dir == 3)
-    dir = !isLeft;
-  else if (dir == 1)
-    dir = 3 - isLeft;
-  else if (dir == 0)
-    dir = 2 + isLeft;
-*/
+  // should return a int !
+  // dir I guess.
+
+  /*
+  ** if (dir == 2 || dir == 3)
+  ** dir = !isLeft;
+  ** else if (dir == 1)
+  ** dir = 3 - isLeft;
+  ** else if (dir == 0)
+  ** dir = 2 + isLeft;
+  */
 }
 
 
 void				GameManager::turn_func(char t)
 {
-  dir = change_dir(dir, t);
+  dir = change_dir(dir, t); // go to line 21
   move();
 }
 
+// why not return (*snake.begin()).GetX(); ?
 int				GameManager::getSnakeX()
 {
   std::deque<Point>::iterator	it = snake.begin();
@@ -39,6 +46,7 @@ int				GameManager::getSnakeX()
   return (*it).GetX();
 }
 
+// why not return (*snake.begin()).GetX(); ?
 int				GameManager::getSnakeY()
 {
   std::deque<Point>::iterator	it = snake.begin();
