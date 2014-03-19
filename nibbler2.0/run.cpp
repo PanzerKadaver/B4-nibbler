@@ -14,6 +14,15 @@ int		change_dir(int dir, char t)
     dir = isLeft ? 2 : 3;
   else if (dir == 0)
     dir = isLeft ? 3 : 2;
+
+/*
+  if (dir == 2 || dir == 3)
+    dir = !isLeft;
+  else if (dir == 1)
+    dir = 3 - isLeft;
+  else if (dir == 0)
+    dir = 2 + isLeft;
+*/
 }
 
 
