@@ -4,9 +4,39 @@
 #include "run.hpp"
 
 #include <unistd.h> // DEBUG
-
 int		change_dir(int dir, char t)
 {
+  // bool isLeft = (t == 'l');
+
+/*
+  if ((dir == 2 && isLeft) || (dir == 3 && isLeft))
+    dir = 0;
+  else if ((dir == 2 && !isLeft) || (dir == 3 && !isLeft))
+    dir = 1;
+  else if ((dir == 0 && !isLeft) || (dir == 1 && isLeft))
+    dir = 2;
+  else if ((dir == 0 && isLeft) || (dir == 1 && !isLeft))
+    dir = 3;
+*/
+
+/*
+	if (dir == 2 || dir == 3)
+		dir = isLeft ? 0 : 1;
+	else if (dir == 1)
+		dir = isLeft ? 2 : 3;
+	else if (dir == 0)
+		dir = isLeft ? 3 : 2;
+*/
+
+/*
+	if (dir == 2 || dir == 3)
+		dir = (int)(!isLeft);
+	else if (dir == 1)
+		dir = 2 + (int)(!isLeft);
+	else if (dir == 0)
+		dir = 2 + (int)(isLeft);
+*/
+
   if ((dir == 0 && t == 'l') || (dir == 1 && t == 'r'))
     dir = 3;
   else if ((dir == 0 && t == 'r') || (dir == 1 && t == 'l'))
@@ -16,6 +46,7 @@ int		change_dir(int dir, char t)
   else if ((dir == 2 && t == 'r') || (dir == 3 && t == 'r'))
     dir = 1;
 }
+
 
 void				GameManager::turn_func(char t)
 {
