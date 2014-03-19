@@ -19,11 +19,12 @@ int		change_dir(int dir, char t)
 
 void				GameManager::turn_func(char t)
 {
-  std::deque<Point>::iterator	head = snake.begin();
-  int				x = getSnakeX(), y = getSnakeY();
+  /*std::deque<Point>::iterator	head = snake.begin();
+  int				x = getSnakeX(), y = getSnakeY();*/
 
   dir = change_dir(dir, t);
-  if (dir == 0)
+  move();
+  /*if (dir == 0)
     Point new_pt(x - 1, y);
   else if (dir == 1)
     Point new_pt(x + 1, y);
@@ -33,7 +34,7 @@ void				GameManager::turn_func(char t)
     Point new_pt(x, y + 1);
 
   snake.push_front(new_pt);
-  snake.pop_back();
+  snake.pop_back();*/
 }
 
 int				GameManager::getSnakeX()
