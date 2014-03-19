@@ -37,18 +37,19 @@ int				GameManager::getSnakeY()
   return (*it).GetY();
 }
 
-void				GameManager::move()
+void	GameManager::move()
 {
-  int				x = getSnakeX(), y = getSnakeY();
+  int	x = getSnakeX(), y = getSnakeY();
+  Point new_pt(x, y);
 
   if (dir == 0)
-    Point new_pt(x - 1, y);
+    new_pt.SetX(x - 1);
   else if (dir == 1)
-    Point new_pt(x + 1, y);
+    new_pt.SetX(x + 1);
   else if (dir == 2)
-    Point new_pt(x, y - 1);
+    new_pt.SetY(y - 1);
   else
-    Point new_pt(x, y + 1);
+    new_pt.SetY(y + 1);
 
   snake.push_front(new_pt);
   snake.pop_back();
