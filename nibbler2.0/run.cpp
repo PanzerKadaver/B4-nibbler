@@ -54,7 +54,7 @@ void				GameManager::move()
   snake.pop_back();
 }
 
-int		run()
+int		GameManager::run()
 {
   bool		state = true;
 

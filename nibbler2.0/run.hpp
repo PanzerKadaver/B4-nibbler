@@ -11,6 +11,7 @@ class GameManager
   void	move();
   void	turn_func(char);
   void	draw();
+  int	run();
   int	getSnakeX();
   int	getSnakeY();
 
