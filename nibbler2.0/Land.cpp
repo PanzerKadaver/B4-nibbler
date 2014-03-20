@@ -5,9 +5,12 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 01:11:32 2014 alois
-// Last update Thu Mar 20 17:19:08 2014 alois
+// Last update Thu Mar 20 17:55:23 2014 alois
 //
 
+//
+#include <iostream>
+//
 #include "Land.hpp"
 
 Land::Land(int size) : width(size), height(size)
@@ -53,11 +56,13 @@ void Land::init()
 	point.SetX(i);
 	point.SetY(j);
 	this->land[i][j] = point;
+	std::cout << "point" << std::endl;
       }
   addBorder();
 }
-
+/*
 void Land::update(std::deque<Point>)
 {
-  /* update std::deque<std::deque<Point> > land with the new snake coords */
+  // update std::deque<std::deque<Point> > land with the new snake coords
 }
+*/

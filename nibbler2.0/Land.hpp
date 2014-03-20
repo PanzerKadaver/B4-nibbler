@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 01:03:10 2014 alois
-// Last update Thu Mar 20 17:18:41 2014 alois
+// Last update Thu Mar 20 17:51:08 2014 alois
 //
 
 #ifndef LAND_HPP_
@@ -21,10 +21,14 @@ public:
   Land(int, int);
   ~Land() {}
 
-private:
+  int					GetWidth() const { return width; }
+  int					GetHeight() const { return height; }
+  std::deque<std::deque<Point> >	GetLand() const { return land; }
+
+private	:
   void	addBorder();
   void	init();
-  void	update(std::deque<Point>);
+  //void	update(std::deque<Point>);
 
   int					width;
   int					height;
