@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 01:11:32 2014 alois
-// Last update Thu Mar 20 14:44:54 2014 alois
+// Last update Thu Mar 20 17:14:25 2014 alois
 //
 
 #include "Land.hpp"
@@ -23,35 +23,36 @@ Land::Land(unsigned int w, unsigned int h) : width(w), height(h)
 // faut que l on decide si on taf avec des uint ou des int ou des size_t
 void Land::addBorder()
 {
-  Point *border = new Point('b'); // not sure
+  Point border('b');
   for (int j = 0; j < this->height; ++j)
     {
       border.SetY(j);
       border.SetX(0);
-      Land[0][j] = border;
+      this->land[0][j] = border;
       border.SetX(width);
-      Land[width][j] = border;
+      this->land[width][j] = border;
     }
   for (int i = 1; i < this->width - 1; ++i)
     {
       border.SetX(i);
       border.SetY(0);
-      Land[i][0] = border;
+      this->land[i][0] = border;
       border.SetY(height);
-      Land[0][height] = border;
+      this->land[0][height] = border;
     }
 }
 
 void Land::init()
 {
-  Point point();
+  Point point;
 
   for (int i = 0; i < this->width; ++i)
     for (int j = 0; j < this->height; ++j)
       {
-	point.SetX = i;
-	point.SetY = j;
-	Land[i][j] = point;
+	point.SetContent(' ');
+	point.SetX(i);
+	point.SetY(j);
+	this->land[i][j] = point;
       }
   addBorder();
 }

@@ -5,17 +5,19 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 00:26:40 2014 alois
-// Last update Thu Mar 20 14:26:49 2014 alois
+// Last update Thu Mar 20 17:14:04 2014 alois
 //
 
 #ifndef POINT_HPP_
 # define POINT_HPP_
 
+# include <iosfwd>
 # include <utility>
 
 class Point
 {
 public:
+  Point() {}
   Point(char c) : content(c) {}
   Point(std::pair<int, int> p) : content(' ') { coord = p; }
   Point(int x, int y) { coord.first = x; coord.second = y; }
@@ -36,6 +38,6 @@ private:
   std::pair<int, int>	coord;
 };
 
-ostream &operator<<(ostream &, const Point &);
+std::ostream &operator<<(std::ostream &, const Point &);
 
 #endif
