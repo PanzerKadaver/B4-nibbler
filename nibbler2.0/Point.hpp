@@ -1,11 +1,11 @@
 //
 // Point.hpp for Point.hpp in /home/alois/rendu/nibbler/nibbler
-// 
+//
 // Made by alois
 // Login   <alois@epitech.net>
-// 
+//
 // Started on  Tue Mar 18 00:26:40 2014 alois
-// Last update Tue Mar 18 19:30:39 2014 alois
+// Last update Thu Mar 20 14:26:49 2014 alois
 //
 
 #ifndef POINT_HPP_
