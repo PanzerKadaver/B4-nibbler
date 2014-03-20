@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 00:26:40 2014 alois
-// Last update Thu Mar 20 17:14:04 2014 alois
+// Last update Thu Mar 20 19:30:25 2014 alois
 //
 
 #ifndef POINT_HPP_
@@ -21,6 +21,8 @@ public:
   Point(char c) : content(c) {}
   Point(std::pair<int, int> p) : content(' ') { coord = p; }
   Point(int x, int y) { coord.first = x; coord.second = y; }
+  Point(const Point &p) : content(p.GetContent()), coord(p.GetCoord()) {}
+  Point &operator=(const Point&);
   ~Point() {}
 
   char			GetContent() const { return content; }

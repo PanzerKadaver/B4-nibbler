@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 01:03:10 2014 alois
-// Last update Thu Mar 20 17:51:08 2014 alois
+// Last update Thu Mar 20 20:23:11 2014 alois
 //
 
 #ifndef LAND_HPP_
@@ -26,7 +26,7 @@ public:
   std::deque<std::deque<Point> >	GetLand() const { return land; }
 
 private	:
-  void	addBorder();
+  //void	addBorder();
   void	init();
   //void	update(std::deque<Point>);
 
