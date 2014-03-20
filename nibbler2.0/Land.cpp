@@ -5,17 +5,17 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 01:11:32 2014 alois
-// Last update Thu Mar 20 17:14:25 2014 alois
+// Last update Thu Mar 20 17:19:08 2014 alois
 //
 
 #include "Land.hpp"
 
-Land::Land(unsigned int size) : width(size), height(size)
+Land::Land(int size) : width(size), height(size)
 {
   init();
 }
 
-Land::Land(unsigned int w, unsigned int h) : width(w), height(h)
+Land::Land(int w, int h) : width(w), height(h)
 {
   init();
 }

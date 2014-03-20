@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 01:03:10 2014 alois
-// Last update Tue Mar 18 01:31:50 2014 alois
+// Last update Thu Mar 20 17:18:41 2014 alois
 //
 
 #ifndef LAND_HPP_
@@ -17,8 +17,8 @@
 class Land
 {
 public:
-  Land(unsigned int);
-  Land(unsigned int, unsigned int);
+  Land(int);
+  Land(int, int);
   ~Land() {}
 
 private:
@@ -26,8 +26,8 @@ private:
   void	init();
   void	update(std::deque<Point>);
 
-  unsigned int				width;
-  unsigned int				height;
+  int					width;
+  int					height;
   std::deque<std::deque<Point> >	land;
 };
 
