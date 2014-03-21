@@ -5,13 +5,14 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 19:08:25 2014 alois
-// Last update Tue Mar 18 19:13:34 2014 alois
+// Last update Fri Mar 21 14:57:16 2014 Nathan AUBERT
 //
 
 #ifndef TRADUCTOR_HPP_
 # define TRADUCTOR_HPP_
 
 # include <map>
+# include <string>
 
 class Traductor
 {

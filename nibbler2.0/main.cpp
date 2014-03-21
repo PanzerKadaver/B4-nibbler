@@ -1,23 +1,25 @@
 #include <iostream>
 #include <cstdlib>
 #include <QtGui/qapplication.h>
-#include <QtGui/qpushButton.h>
+#include <QtGui/QtGui>
 
 #include "Library.hpp"
+#include "GameManager.hpp"
 
 void		pause();
 int			appRun(int, char **);
 
-int     main(int ac, char **av)
+int		main(int ac, char **av)
 {
-    int err_code = 0;
+  GameManager	_game;
+  int		err_code = 0;
 
-    //    err_code = appRun(ac, av);
-    err_code = run();
+  //    err_code = appRun(ac, av);
+  err_code = _game.run();
 
-    std::cout << std::endl;
-    pause();
-    return (err_code);
+  std::cout << std::endl;
+  pause();
+  return (err_code);
 }
 
 int			appRun(int ac, char **av)
