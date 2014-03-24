@@ -3,7 +3,7 @@
 #include "Land.hpp"
 #include "Point.hpp"
 #include "Traductor.hpp"
-#include "run.hpp"
+#include "GameManager.hpp"
 
 #include <unistd.h> // DEBUG
 
@@ -18,9 +18,7 @@ int		change_dir(int dir, char t)
   else if (dir == 0)
     dir = isLeft ? 3 : 2;
 
-  // should return a int !
-  // dir I guess.
-
+  return dir;
   /*
   ** if (dir == 2 || dir == 3)
   ** dir = !isLeft;
