@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 14:27:34 2014 alois
-// Last update Thu Mar 20 19:36:11 2014 alois
+// Last update Thu Mar 20 22:13:47 2014 alois
 //
 
 #include "Point.hpp"
@@ -13,7 +13,7 @@
 Point & Point::operator=(const Point &p)
 {
   this->content = p.GetContent();
-  this->coord = p.GetCoord();
+  this->coor = p.GetCoor();
   return *this;
 }
 

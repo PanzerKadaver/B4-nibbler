@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 00:26:40 2014 alois
-// Last update Thu Mar 20 19:30:25 2014 alois
+// Last update Thu Mar 20 22:14:10 2014 alois
 //
 
 #ifndef POINT_HPP_
@@ -19,25 +19,25 @@ class Point
 public:
   Point() {}
   Point(char c) : content(c) {}
-  Point(std::pair<int, int> p) : content(' ') { coord = p; }
-  Point(int x, int y) { coord.first = x; coord.second = y; }
-  Point(const Point &p) : content(p.GetContent()), coord(p.GetCoord()) {}
+  Point(std::pair<int, int> p) : content(' ') { coor = p; }
+  Point(int x, int y) { coor.first = x; coor.second = y; }
+  Point(const Point &p) : content(p.GetContent()), coor(p.GetCoor()) {}
   Point &operator=(const Point&);
   ~Point() {}
 
   char			GetContent() const { return content; }
-  std::pair<int,int>	GetCoord() const { return coord; }
-  int			GetX() const { return coord.first; }
-  int			GetY() const { return coord.second; }
+  std::pair<int,int>	GetCoor() const { return coor; }
+  int			GetX() const { return coor.first; }
+  int			GetY() const { return coor.second; }
 
   void			SetContent(char c) { content = c; }
-  void			SetCoord(std::pair<int, int> &pair) { coord = pair; }
-  void			SetX(int x) { coord.first = x; }
-  void			SetY(int y) { coord.second = y; }
+  void			SetCoor(std::pair<int, int> &pair) { coor = pair; }
+  void			SetX(int x) { coor.first = x; }
+  void			SetY(int y) { coor.second = y; }
 
 private:
   char			content;
-  std::pair<int, int>	coord;
+  std::pair<int, int>	coor;
 };
 
 std::ostream &operator<<(std::ostream &, const Point &);
