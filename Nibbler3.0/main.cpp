@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 13:46:23 2014 Nathan AUBERT
-// Last update Tue Apr  1 15:14:16 2014 Nathan AUBERT
+// Last update Tue Apr  1 17:17:13 2014 Nathan AUBERT
 //
 
 #include <QtGui/QApplication>

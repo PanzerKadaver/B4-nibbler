@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 14:44:47 2014 Nathan AUBERT
-// Last update Tue Apr  1 17:35:58 2014 alois
+// Last update Tue Apr  1 17:49:27 2014 Nathan AUBERT
 //
 
 #ifndef GAMEMANAGER_HPP_
@@ -26,6 +26,9 @@ public:
   void	turn_func(char);
   int	getSnakeX();
   int	getSnakeY();
+  void	Eat();
+  int	ChangeDir(int, char);
+  bool  CheckNext(Point);
 
   int score;
   std::deque<Point>	snake;
@@ -53,7 +56,5 @@ public:
     std::deque<std::deque<Point> >	land;
   };
 };
-
-int	change_dir(int, char);
 
 #endif /* GAMEMANAGER_HPP_ */

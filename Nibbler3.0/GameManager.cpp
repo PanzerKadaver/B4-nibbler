@@ -5,14 +5,14 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 14:42:40 2014 Nathan AUBERT
-// Last update Tue Apr  1 17:39:50 2014 alois
+// Last update Tue Apr  1 17:49:13 2014 Nathan AUBERT
 //
 
 #include "GameManager.hpp"
 
 GameManager::GameManager() : score(0), dir(1), isStarve(true)
 {
-  this->snake(); // init deque -> initSnake()
+  //  this->snake(); // init deque -> initSnake()
 }
 
 int	GameManager::ChangeDir(int dir, char t)
@@ -35,18 +35,18 @@ void	GameManager::Eat()
   this->isStarve = false;
 }
 
-bool	GameMaanger::CheckNext(Point nextPoint)
+bool	GameManager::CheckNext(Point next)
 {
   if (next.GetContent() == 's' || next.GetContent() == 'b')
     return false;
   if (next.GetContent() == 'f')
-    eat();
+    Eat();
   return true;
 }
 
 void	GameManager::turn_func(char t)
 {
-  dir = change_dir(dir, t);
+  dir = ChangeDir(dir, t);
   move();
 }
 
@@ -80,7 +80,7 @@ void	GameManager::move()
 
   nextPoint.SetContent(((this->land)[nextPoint.GetX()][nextPoint.GetY()]).GetContent());
 
-  if (check_next(nextPoint))
+  if (CheckNext(nextPoint))
     {
       snake.push_front(nextPoint);
       if (isStarve)
