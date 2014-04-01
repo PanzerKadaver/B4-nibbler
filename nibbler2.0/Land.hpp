@@ -5,14 +5,16 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 01:03:10 2014 alois
-// Last update Thu Mar 20 20:23:11 2014 alois
+// Last update Tue Apr  1 14:48:45 2014 alois
 //
 
 #ifndef LAND_HPP_
 # define LAND_HPP_
 
 # include <deque>
+# include "Randomizer.hpp"
 # include "Point.hpp"
+
 
 class Land
 {
@@ -26,9 +28,9 @@ public:
   std::deque<std::deque<Point> >	GetLand() const { return land; }
 
 private	:
-  //void	addBorder();
   void	init();
-  //void	update(std::deque<Point>);
+  void  initSnake();
+  void  initFood();
 
   int					width;
   int					height;

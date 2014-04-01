@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 01:11:32 2014 alois
-// Last update Thu Mar 20 22:10:44 2014 alois
+// Last update Tue Apr  1 14:51:08 2014 alois
 //
 
 //
@@ -23,7 +23,42 @@ Land::Land(int w, int h) : width(w), height(h)
   init();
 }
 
-// faut que l on decide si on taf avec des uint ou des int ou des size_t
+// caca
+void Land::initFood()
+{
+  std::deque<Point> EmptyList;
+
+  // read all cell
+  for (int i = 0; i < this->width; i++)
+    {
+      for (int j = 0; j < this->height; j++)
+	{
+	  if (((this->land)[i][j]).GetContent() == ' ')
+	    {
+	      EmptyList.push_back((this->land)[i][j]);
+	    }
+	}
+    }
+  // get rand one
+  Point p = Randomizer::GetItem<std::deque<Point> >(EmptyList);
+  ((this->land)[p.GetX()][p.GetY()]).SetContent('f');
+}
+
+// inversion x y
+void Land::initSnake()
+{
+  int midWidth = this->width / 2;
+  int midHeight = this->height / 2;
+
+  Point ptmp;
+  ptmp.SetX(midWidth);
+  ptmp.SetY(midHeight);
+  ptmp.SetContent('s');
+
+  (this->land)[midWidth][midHeight - 1] = ptmp;
+  (this->land)[midWidth][midHeight] = ptmp;
+  (this->land)[midWidth][midHeight + 1] = ptmp;
+}
 
 void Land::init()
 {
@@ -43,11 +78,6 @@ void Land::init()
       this->land.push_back(tmp);
       tmp.erase(tmp.begin(), tmp.end());
     }
+  initSnake();
+  initFood();
 }
-
-/*
-void Land::update(std::deque<Point>)
-{
-  // update std::deque<std::deque<Point> > land with the new snake coords
-}
-*/
