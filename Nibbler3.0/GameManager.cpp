@@ -5,12 +5,12 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 14:42:40 2014 Nathan AUBERT
-// Last update Tue Apr  1 18:14:22 2014 alois
+// Last update Tue Apr  1 18:48:52 2014 Nathan AUBERT
 //
 
 #include "GameManager.hpp"
 
-GameManager::GameManager() : score(0), dir(1), isStarve(true)
+GameManager::GameManager() : score(0), dir(1), isStarve(true), country(24, 24)
 {
   Land Ocalrissian(24,24);
   this->country = Ocalrissian;
@@ -70,6 +70,8 @@ void	GameManager::move()
   int	x = getSnakeX(), y = getSnakeY();
   Point nextPoint(x, y);
 
+  std::cout << x << " " << y << std::endl;
+
   if (dir == 0)
     nextPoint.SetX(x - 1);
   else if (dir == 1)
@@ -79,14 +81,19 @@ void	GameManager::move()
   else
     nextPoint.SetY(y + 1);
 
-  nextPoint.SetContent(((this->country.land)[nextPoint.GetX()][nextPoint.GetY()]).GetContent());
+  int npx = nextPoint.GetX();
+  int npy = nextPoint.GetY();
+
+  std::deque<std::deque<Point> > deq = this->country.GetLand();
+
+  nextPoint.SetContent((deq[npx][npy]).GetContent());
 
   if (CheckNext(nextPoint))
     {
       snake.push_front(nextPoint);
       if (isStarve)
 	snake.pop_back();
-      isStarve++; // http://programmers.stackexchange.com/q/230928/121841
+      isStarve = true;
     }
   else
     {
@@ -109,9 +116,12 @@ GameManager::Land::Land(const GameManager::Land &l)
 {
 }
 
-GameManager::Land & GameManager::operator=(const GameManager::Land &l)
-  : width(l.GetWidth()), height(l.GetHeight()), land(l.GetLand())
+GameManager::Land & GameManager::Land::operator=(const GameManager::Land &l)
 {
+  this->width =l.GetWidth();
+  this->height =l.GetHeight();
+  this->land =l.GetLand();
+  return (*this);
 }
 
 
