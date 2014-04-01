@@ -1,11 +1,11 @@
 //
 // GameManager.cpp for  in /home/aubert_n/rep/nibbler/Nibbler3.0
-// 
+//
 // Made by Nathan AUBERT
 // Login   <aubert_n@epitech.net>
-// 
+//
 // Started on  Tue Apr  1 14:42:40 2014 Nathan AUBERT
-// Last update Tue Apr  1 18:48:52 2014 Nathan AUBERT
+// Last update Tue Apr  1 19:22:49 2014 alois
 //
 
 #include "GameManager.hpp"
@@ -14,7 +14,22 @@ GameManager::GameManager() : score(0), dir(1), isStarve(true), country(24, 24)
 {
   Land Ocalrissian(24,24);
   this->country = Ocalrissian;
-  //  this->snake(); // init deque -> initSnake()
+  initSnake();
+  initFood();
+}
+
+void GameManager::initFood()
+{
+  std::deque<Point> EmptyList;
+
+  // read all cell
+  for (int i = 0; i < this->country.width; i++)
+      for (int j = 0; j < this->country.height; j++)
+	  if (((this->country.land)[i][j]).GetContent() == ' ')
+	      EmptyList.push_back((this->country.land)[i][j]);
+  // get rand one
+  Point p = Randomizer::GetItem<std::deque<Point> >(EmptyList);
+  ((this->country.land)[p.GetX()][p.GetY()]).SetContent('f');
 }
 
 int	GameManager::ChangeDir(int dir, char t)
@@ -30,10 +45,42 @@ int	GameManager::ChangeDir(int dir, char t)
   return dir;
 }
 
+void GameManager::printSnake()
+{
+  for(int i = 0; i < this->snake; ++i)
+    {
+      Point tmp = this->snake[i];
+      (this->country.land)[tmp.GetX()][tmp.GetY()] = tmp.GetContent();
+    }
+}
+
+// possible inversion x y
+void GameManager::initSnake()
+{
+  int midWidth = this->country.width / 2;
+  int midHeight = this->country.height / 2;
+
+  Point ptmp;
+  ptmp.SetX(midWidth);
+  ptmp.SetContent('s');
+
+  for (int i = 0; i < 3; ++i)
+    {
+      ptmp.SetY(midHeight - (i - 1)); // 3 / 2 ?
+      this->snake.push_back(ptmp);
+    }
+  /*
+  (this->country)[midWidth][midHeight - 1] = ptmp;
+  (this->country)[midWidth][midHeight] = ptmp;
+  (this->country)[midWidth][midHeight + 1] = ptmp;
+  */
+}
+
 void	GameManager::Eat()
 {
   this->score++;
   this->isStarve = false;
+  initFood();
 }
 
 bool	GameManager::CheckNext(Point next)
@@ -94,6 +141,7 @@ void	GameManager::move()
       if (isStarve)
 	snake.pop_back();
       isStarve = true;
+      printSnake();
     }
   else
     {
@@ -124,37 +172,6 @@ GameManager::Land & GameManager::Land::operator=(const GameManager::Land &l)
   return (*this);
 }
 
-
-void GameManager::Land::initFood()
-{
-  std::deque<Point> EmptyList;
-
-  // read all cell
-  for (int i = 0; i < this->width; i++)
-      for (int j = 0; j < this->height; j++)
-	  if (((this->land)[i][j]).GetContent() == ' ')
-	      EmptyList.push_back((this->land)[i][j]);
-  // get rand one
-  Point p = Randomizer::GetItem<std::deque<Point> >(EmptyList);
-  ((this->land)[p.GetX()][p.GetY()]).SetContent('f');
-}
-
-// possible inversion x y
-void GameManager::Land::initSnake()
-{
-  int midWidth = this->width / 2;
-  int midHeight = this->height / 2;
-
-  Point ptmp;
-  ptmp.SetX(midWidth);
-  ptmp.SetY(midHeight);
-  ptmp.SetContent('s');
-
-  (this->land)[midWidth][midHeight - 1] = ptmp;
-  (this->land)[midWidth][midHeight] = ptmp;
-  (this->land)[midWidth][midHeight + 1] = ptmp;
-}
-
 void GameManager::Land::init()
 {
   Point point;
@@ -173,6 +190,4 @@ void GameManager::Land::init()
       this->land.push_back(tmp);
       tmp.erase(tmp.begin(), tmp.end());
     }
-  initSnake();
-  initFood();
 }
