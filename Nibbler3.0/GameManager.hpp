@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 14:44:47 2014 Nathan AUBERT
-// Last update Tue Apr  1 17:49:27 2014 Nathan AUBERT
+// Last update Tue Apr  1 18:04:50 2014 alois
 //
 
 #ifndef GAMEMANAGER_HPP_
@@ -35,11 +35,15 @@ public:
   int dir; // 0 == LEFT, 1 == RIGHT, 2 == UP, 3 == DOWN
   bool isStarve;
 
+  Land country;
+
   class Land
   {
   public:
     Land(int);
     Land(int, int);
+    Land(const Land &);
+    Land &operator=(const Land &);
     ~Land() {}
 
     int	GetWidth() const { return width; }

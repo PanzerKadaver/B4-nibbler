@@ -5,13 +5,15 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 14:42:40 2014 Nathan AUBERT
-// Last update Tue Apr  1 17:49:13 2014 Nathan AUBERT
+// Last update Tue Apr  1 18:14:22 2014 alois
 //
 
 #include "GameManager.hpp"
 
 GameManager::GameManager() : score(0), dir(1), isStarve(true)
 {
+  Land Ocalrissian(24,24);
+  this->country = Ocalrissian;
   //  this->snake(); // init deque -> initSnake()
 }
 
@@ -28,7 +30,6 @@ int	GameManager::ChangeDir(int dir, char t)
   return dir;
 }
 
-// todo
 void	GameManager::Eat()
 {
   this->score++;
@@ -78,7 +79,7 @@ void	GameManager::move()
   else
     nextPoint.SetY(y + 1);
 
-  nextPoint.SetContent(((this->land)[nextPoint.GetX()][nextPoint.GetY()]).GetContent());
+  nextPoint.SetContent(((this->country.land)[nextPoint.GetX()][nextPoint.GetY()]).GetContent());
 
   if (CheckNext(nextPoint))
     {
@@ -103,21 +104,26 @@ GameManager::Land::Land(int w, int h) : width(w), height(h)
   init();
 }
 
+GameManager::Land::Land(const GameManager::Land &l)
+  : width(l.GetWidth()), height(l.GetHeight()), land(l.GetLand())
+{
+}
+
+GameManager::Land & GameManager::operator=(const GameManager::Land &l)
+  : width(l.GetWidth()), height(l.GetHeight()), land(l.GetLand())
+{
+}
+
+
 void GameManager::Land::initFood()
 {
   std::deque<Point> EmptyList;
 
   // read all cell
   for (int i = 0; i < this->width; i++)
-    {
       for (int j = 0; j < this->height; j++)
-	{
 	  if (((this->land)[i][j]).GetContent() == ' ')
-	    {
 	      EmptyList.push_back((this->land)[i][j]);
-	    }
-	}
-    }
   // get rand one
   Point p = Randomizer::GetItem<std::deque<Point> >(EmptyList);
   ((this->land)[p.GetX()][p.GetY()]).SetContent('f');
