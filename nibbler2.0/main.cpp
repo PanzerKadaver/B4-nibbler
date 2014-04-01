@@ -15,7 +15,7 @@ int		main(int ac, char **av)
   int		err_code = 0;
 
   //    err_code = appRun(ac, av);
-  err_code = _game.run();
+  err_code = _game.run(ac, av);
 
   std::cout << std::endl;
   pause();

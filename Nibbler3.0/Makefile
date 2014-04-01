@@ -5,7 +5,7 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Fri Mar 21 20:24:30 2014 Nathan AUBERT
+## Last update Tue Apr  1 13:46:06 2014 Nathan AUBERT
 ##
 
 CC = clang++ -g3
@@ -23,11 +23,10 @@ LDFLAGS += -ldl
 
 NAME = snqkePourLesNuls
 
-SRCS =	GameManager.cpp \
-	Land.cpp \
-	main.cpp \
-	Point.cpp \
-	Traductor.cpp
+SRCS =	main.cpp \
+	Canvas.cpp \
+	Event.cpp \
+	QtCanvas.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

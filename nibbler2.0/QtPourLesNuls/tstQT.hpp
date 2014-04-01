@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Fri Mar 21 14:35:46 2014 Nathan AUBERT
-// Last update Fri Mar 21 14:42:58 2014 Nathan AUBERT
+// Last update Tue Apr  1 13:14:23 2014 Nathan AUBERT
 //
 
 #ifndef tstQT_HPP_
@@ -24,10 +24,11 @@ MyTest ( QWidget * parent = 0, Qt::WindowFlags f = 0 )
 protected: 
   void	keyPressEvent(QKeyEvent *event)
   {
-    qDebug()<<event->text();
     event->accept();
-std::cout << "key == " << event->key() << std::endl;
-
+    std::cout << "key == " << event->key() << std::endl;
+    std::cout << "toto" << std::endl;
+    if (event->key() == 16777251)
+      return;
   }
 };
 
