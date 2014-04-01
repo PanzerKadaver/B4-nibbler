@@ -5,12 +5,17 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 14:42:40 2014 Nathan AUBERT
-// Last update Tue Apr  1 14:52:36 2014 Nathan AUBERT
+// Last update Tue Apr  1 17:39:50 2014 alois
 //
 
 #include "GameManager.hpp"
 
-int		change_dir(int dir, char t)
+GameManager::GameManager() : score(0), dir(1), isStarve(true)
+{
+  this->snake(); // init deque -> initSnake()
+}
+
+int	GameManager::ChangeDir(int dir, char t)
 {
   bool isLeft = (t == 'l');
 
@@ -23,42 +28,135 @@ int		change_dir(int dir, char t)
   return dir;
 }
 
-void				GameManager::turn_func(char t)
+// todo
+void	GameManager::Eat()
+{
+  this->score++;
+  this->isStarve = false;
+}
+
+bool	GameMaanger::CheckNext(Point nextPoint)
+{
+  if (next.GetContent() == 's' || next.GetContent() == 'b')
+    return false;
+  if (next.GetContent() == 'f')
+    eat();
+  return true;
+}
+
+void	GameManager::turn_func(char t)
 {
   dir = change_dir(dir, t);
   move();
 }
 
-int				GameManager::getSnakeX()
+int	GameManager::getSnakeX()
 {
   return (*snake.begin()).GetX();
-    /*std::deque<Point>::iterator	it = snake.begin();
-
-      return (*it).GetX();*/
+  /*std::deque<Point>::iterator	it = snake.begin();
+    return (*it).GetX();*/
 }
 
-int				GameManager::getSnakeY()
+int	GameManager::getSnakeY()
 {
-  return (*snake.begin()).GetX();
+  return (*snake.begin()).GetY();
   /*  std::deque<Point>::iterator	it = snake.begin();
-
       return (*it).GetY();*/
 }
 
 void	GameManager::move()
 {
   int	x = getSnakeX(), y = getSnakeY();
-  Point new_pt(x, y);
+  Point nextPoint(x, y);
 
   if (dir == 0)
-    new_pt.SetX(x - 1);
+    nextPoint.SetX(x - 1);
   else if (dir == 1)
-    new_pt.SetX(x + 1);
+    nextPoint.SetX(x + 1);
   else if (dir == 2)
-    new_pt.SetY(y - 1);
+    nextPoint.SetY(y - 1);
   else
-    new_pt.SetY(y + 1);
+    nextPoint.SetY(y + 1);
 
-  snake.push_front(new_pt);
-  snake.pop_back();
+  nextPoint.SetContent(((this->land)[nextPoint.GetX()][nextPoint.GetY()]).GetContent());
+
+  if (check_next(nextPoint))
+    {
+      snake.push_front(nextPoint);
+      if (isStarve)
+	snake.pop_back();
+      isStarve++; // http://programmers.stackexchange.com/q/230928/121841
+    }
+  else
+    {
+      // We have to stop the game
+    }
+}
+
+GameManager::Land::Land(int size) : width(size), height(size)
+{
+  init();
+}
+
+GameManager::Land::Land(int w, int h) : width(w), height(h)
+{
+  init();
+}
+
+void GameManager::Land::initFood()
+{
+  std::deque<Point> EmptyList;
+
+  // read all cell
+  for (int i = 0; i < this->width; i++)
+    {
+      for (int j = 0; j < this->height; j++)
+	{
+	  if (((this->land)[i][j]).GetContent() == ' ')
+	    {
+	      EmptyList.push_back((this->land)[i][j]);
+	    }
+	}
+    }
+  // get rand one
+  Point p = Randomizer::GetItem<std::deque<Point> >(EmptyList);
+  ((this->land)[p.GetX()][p.GetY()]).SetContent('f');
+}
+
+// possible inversion x y
+void GameManager::Land::initSnake()
+{
+  int midWidth = this->width / 2;
+  int midHeight = this->height / 2;
+
+  Point ptmp;
+  ptmp.SetX(midWidth);
+  ptmp.SetY(midHeight);
+  ptmp.SetContent('s');
+
+  (this->land)[midWidth][midHeight - 1] = ptmp;
+  (this->land)[midWidth][midHeight] = ptmp;
+  (this->land)[midWidth][midHeight + 1] = ptmp;
+}
+
+void GameManager::Land::init()
+{
+  Point point;
+
+  for (int i = 0; i < this->width; ++i)
+    {
+      std::deque<Point> tmp;
+      for (int j = 0; j < this->height; ++j)
+	{
+	  point.SetContent((i == 0 || j == 0 || i + 1 == this->width || j + 1 == this->height)
+			   ? 'b' : ' ');
+	  point.SetX(i);
+	  point.SetY(j);
+	  tmp.push_back(point);
+	}
+      this->land.push_back(tmp);
+      tmp.erase(tmp.begin(), tmp.end());
+    }
+  initSnake();
+  initFood();
 }
