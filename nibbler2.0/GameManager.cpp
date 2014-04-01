@@ -70,23 +70,30 @@ void	GameManager::move()
   snake.pop_back();
 }
 
-int		GameManager::run()
+int		GameManager::run(int ac, char **av)
 {
   bool		state = true;
+  QApplication	app(ac, av);
+  MyQtClass	MyWidget;
 
   /* create land and init it */
 
+  MyWidget.show();
+  app.exec();
   while (state)
     {
+
       /*
 	event loop, if left pressed : move_func('l');
 	if right pressed : move_func('r');
 	if ESC pressed : state = false
       */
-      move(); // stay on the same dir
+      //      move(); // stay on the same dir
       /* update land */
       /* for_each land draw(); */
       usleep(250000); // DEBUG
+      std::cout << "foobar" << std::endl;
+
     }
 
   return 0;

@@ -2,7 +2,9 @@
 # define RUN_HPP_
 
 # include <deque>
+# include <iostream>
 # include "Point.hpp"
+# include "QtEvents.hpp"
 
 
 class GameManager
@@ -14,7 +16,7 @@ public:
   void	move();
   void	turn_func(char);
   void	draw();
-  int	run();
+  int	run(int, char**);
   int	getSnakeX();
   int	getSnakeY();
 

@@ -1,10 +1,10 @@
 #ifndef NIBBLER_QT_CANVAS_HPP_
 # define NIBBLER_QT_CANVAS_HPP_
 
-#include <QtGui\QWidget>
-#include <QtGui\QGraphicsScene>
-#include <QtCore\QTimer>
-#include <QtGui\QPainter>
+#include <QtGui/QWidget>
+#include <QtGui/QGraphicsScene>
+#include <QtCore/QTimer>
+#include <QtGui/QPainter>
 
 class QtCanvas : public QWidget
 {

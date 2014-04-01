@@ -1,7 +1,7 @@
 #ifndef NIBBLER_CANVAS_HPP_
 # define NIBBLER_CANVAS_HPP_
 
-#include <QtGui\QWidget>
+#include <QtGui/QWidget>
 
 #include "QtCanvas.hpp"
 
