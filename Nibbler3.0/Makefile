@@ -5,10 +5,10 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Tue Apr  1 13:46:06 2014 Nathan AUBERT
+## Last update Tue Apr  1 15:35:23 2014 Nathan AUBERT
 ##
 
-CC = clang++ -g3
+CXX = g++ -g3
 
 RM = rm -f
 
@@ -26,6 +26,8 @@ NAME = snqkePourLesNuls
 SRCS =	main.cpp \
 	Canvas.cpp \
 	Event.cpp \
+	Point.cpp \
+	GameManager.cpp \
 	QtCanvas.cpp
 
 OBJS = $(SRCS:.cpp=.o)
@@ -33,7 +35,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+	$(CXX) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 clean: 
 	$(RM) $(OBJS)

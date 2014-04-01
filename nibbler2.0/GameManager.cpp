@@ -1,3 +1,12 @@
+//
+// GameManager.cpp for  in /home/aubert_n/rep/nibbler/nibbler2.0
+// 
+// Made by Nathan AUBERT
+// Login   <aubert_n@epitech.net>
+// 
+// Started on  Tue Apr  1 14:36:21 2014 Nathan AUBERT
+// Last update Tue Apr  1 14:36:27 2014 Nathan AUBERT
+//
 
 // we should put this to run.hpp
 #include "Land.hpp"
@@ -28,7 +37,6 @@ int		change_dir(int dir, char t)
   ** dir = 2 + isLeft;
   */
 }
-
 
 void				GameManager::turn_func(char t)
 {
