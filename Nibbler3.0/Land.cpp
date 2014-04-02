@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 //
 // Started on  Tue Mar 18 01:11:32 2014 alois
-// Last update Tue Apr  1 14:51:08 2014 alois
+// Last update Tue Apr  1 20:16:16 2014 Nathan AUBERT
 //
 
 //
@@ -45,20 +45,20 @@ void Land::initFood()
 }
 
 // inversion x y
-void Land::initSnake()
-{
-  int midWidth = this->width / 2;
-  int midHeight = this->height / 2;
+// void Land::initSnake()
+// {
+//   int midWidth = this->width / 2;
+//   int midHeight = this->height / 2;
 
-  Point ptmp;
-  ptmp.SetX(midWidth);
-  ptmp.SetY(midHeight);
-  ptmp.SetContent('s');
+//   Point ptmp;
+//   ptmp.SetX(midWidth);
+//   ptmp.SetY(midHeight);
+//   ptmp.SetContent('s');
 
-  (this->land)[midWidth][midHeight - 1] = ptmp;
-  (this->land)[midWidth][midHeight] = ptmp;
-  (this->land)[midWidth][midHeight + 1] = ptmp;
-}
+//   (this->land)[midWidth][midHeight - 1] = ptmp;
+//   (this->land)[midWidth][midHeight] = ptmp;
+//   (this->land)[midWidth][midHeight + 1] = ptmp;
+// }
 
 void Land::init()
 {
@@ -78,6 +78,5 @@ void Land::init()
       this->land.push_back(tmp);
       tmp.erase(tmp.begin(), tmp.end());
     }
-  initSnake();
   initFood();
 }

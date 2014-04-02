@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Tue Mar 18 01:03:10 2014 alois
-// Last update Tue Apr  1 16:34:11 2014 alois
+// Last update Tue Apr  1 20:13:44 2014 Nathan AUBERT
 //
 
 #ifndef LAND_HPP_
@@ -29,7 +29,7 @@ public:
 
 private	:
   void	init();
-  void  initSnake();
+  // void  initSnake();
   void  initFood();
 
   int					width;

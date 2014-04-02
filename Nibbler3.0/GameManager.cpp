@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 //
 // Started on  Tue Apr  1 14:42:40 2014 Nathan AUBERT
-// Last update Tue Apr  1 19:22:49 2014 alois
+// Last update Tue Apr  1 20:35:29 2014 Nathan AUBERT
 //
 
 #include "GameManager.hpp"
@@ -13,6 +13,7 @@
 GameManager::GameManager() : score(0), dir(1), isStarve(true), country(24, 24)
 {
   Land Ocalrissian(24,24);
+
   this->country = Ocalrissian;
   initSnake();
   initFood();
@@ -23,50 +24,60 @@ void GameManager::initFood()
   std::deque<Point> EmptyList;
 
   // read all cell
-  for (int i = 0; i < this->country.width; i++)
-      for (int j = 0; j < this->country.height; j++)
-	  if (((this->country.land)[i][j]).GetContent() == ' ')
-	      EmptyList.push_back((this->country.land)[i][j]);
+  for (int i = 0; i < this->country.GetWidth(); i++)
+    for (int j = 0; j < this->country.GetHeight(); j++)
+      if (((this->country.GetLand())[i][j]).GetContent() == ' ')
+	EmptyList.push_back((this->country.GetLand())[i][j]);
   // get rand one
   Point p = Randomizer::GetItem<std::deque<Point> >(EmptyList);
-  ((this->country.land)[p.GetX()][p.GetY()]).SetContent('f');
+  ((this->country.GetLand())[p.GetX()][p.GetY()]).SetContent('f');
 }
 
-int	GameManager::ChangeDir(int dir, char t)
+void	GameManager::ChangeDir(char t)
 {
-  bool isLeft = (t == 'l');
+  // bool isLeft = (t == 'l');
 
-  if (dir == 2 || dir == 3)
-    dir = isLeft ? 0 : 1;
-  else if (dir == 1)
-    dir = isLeft ? 2 : 3;
-  else if (dir == 0)
-    dir = isLeft ? 3 : 2;
-  return dir;
+  // if (dir == 2 || dir == 3)
+  //   dir = isLeft ? 0 : 1;
+  // else if (dir == 1)
+  //   dir = isLeft ? 2 : 3;
+  // else if (dir == 0)
+  //   dir = isLeft ? 3 : 2;
+
+  if (t == 'l' && dir == 0) {dir = 3;}
+  if (t == 'l' && dir == 1) {dir = 2;}
+  if (t == 'l' && dir == 2) {dir = 0;}
+  if (t == 'l' && dir == 3) {dir = 0;}
+  if (t == 'r' && dir == 0) {dir = 2;}
+  if (t == 'r' && dir == 1) {dir = 3;}
+  if (t == 'r' && dir == 2) {dir = 1;}
+  if (t == 'r' && dir == 3) {dir = 1;}
 }
 
 void GameManager::printSnake()
 {
-  for(int i = 0; i < this->snake; ++i)
+  for (size_t i = 0; i < this->snake.size(); ++i)
     {
       Point tmp = this->snake[i];
-      (this->country.land)[tmp.GetX()][tmp.GetY()] = tmp.GetContent();
+      (this->country.GetLand())[tmp.GetX()][tmp.GetY()] = tmp.GetContent();
+      std::cout << "snake[" << i << "] X == " << tmp.GetX() << " Y == " << tmp.GetY() << std::endl;
     }
+  std::cout << "stop" << std::endl;
 }
 
 // possible inversion x y
 void GameManager::initSnake()
 {
-  int midWidth = this->country.width / 2;
-  int midHeight = this->country.height / 2;
+  int midWidth = this->country.GetWidth() / 2;
+  int midHeight = this->country.GetHeight() / 2;
 
   Point ptmp;
-  ptmp.SetX(midWidth);
+  ptmp.SetY(midHeight);
   ptmp.SetContent('s');
 
   for (int i = 0; i < 3; ++i)
     {
-      ptmp.SetY(midHeight - (i - 1)); // 3 / 2 ?
+      ptmp.SetX(midWidth - (i - 1)); // 3 / 2 ?
       this->snake.push_back(ptmp);
     }
   /*
@@ -74,6 +85,9 @@ void GameManager::initSnake()
   (this->country)[midWidth][midHeight] = ptmp;
   (this->country)[midWidth][midHeight + 1] = ptmp;
   */
+
+  std::cout << "initSnake : " << std::endl;
+  printSnake();
 }
 
 void	GameManager::Eat()
@@ -94,22 +108,18 @@ bool	GameManager::CheckNext(Point next)
 
 void	GameManager::turn_func(char t)
 {
-  dir = ChangeDir(dir, t);
+  ChangeDir(t);
   move();
 }
 
 int	GameManager::getSnakeX()
 {
   return (*snake.begin()).GetX();
-  /*std::deque<Point>::iterator	it = snake.begin();
-    return (*it).GetX();*/
 }
 
 int	GameManager::getSnakeY()
 {
   return (*snake.begin()).GetY();
-  /*  std::deque<Point>::iterator	it = snake.begin();
-      return (*it).GetY();*/
 }
 
 void	GameManager::move()
@@ -117,7 +127,6 @@ void	GameManager::move()
   int	x = getSnakeX(), y = getSnakeY();
   Point nextPoint(x, y);
 
-  std::cout << x << " " << y << std::endl;
 
   if (dir == 0)
     nextPoint.SetX(x - 1);
@@ -141,12 +150,14 @@ void	GameManager::move()
       if (isStarve)
 	snake.pop_back();
       isStarve = true;
-      printSnake();
     }
   else
     {
+      std::cout << "boom" << std::endl;
       // We have to stop the game
     }
+  printSnake();
+  std::cout << "X = " << x << " Y = " << y << std::endl;
 }
 
 GameManager::Land::Land(int size) : width(size), height(size)
