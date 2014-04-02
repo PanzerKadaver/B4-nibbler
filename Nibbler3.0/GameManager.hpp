@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Tue Apr  1 14:44:47 2014 Nathan AUBERT
-// Last update Tue Apr  1 19:20:46 2014 alois
+// Last update Tue Apr  1 20:35:16 2014 Nathan AUBERT
 //
 
 #ifndef GAMEMANAGER_HPP_
@@ -27,7 +27,7 @@ public:
   int	getSnakeX();
   int	getSnakeY();
   void	Eat();
-  int	ChangeDir(int, char);
+  void	ChangeDir(char);
   bool  CheckNext(Point);
   void	initFood();
   void	initSnake();

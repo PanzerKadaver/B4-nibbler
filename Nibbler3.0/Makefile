@@ -5,7 +5,7 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Tue Apr  1 18:37:21 2014 Nathan AUBERT
+## Last update Tue Apr  1 20:17:29 2014 Nathan AUBERT
 ##
 
 CXX = clang++ -g3
@@ -24,6 +24,7 @@ LDFLAGS += -ldl
 NAME = snqkePourLesNuls
 
 SRCS =	main.cpp \
+	Land.cpp \
 	Canvas.cpp \
 	Event.cpp \
 	Point.cpp \
