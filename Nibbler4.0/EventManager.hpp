@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:38 2014 alois
-// Last update Thu Apr  3 19:06:46 2014 alois
+// Last update Thu Apr  3 19:36:48 2014 Nathan AUBERT
 //
 
 #ifndef EVENTMANAGER_HPP_
@@ -34,14 +34,14 @@ private:
 
   void resetDir();
   void keyAction(Direction, bool);
-  bool isOutside();
-  bool isEatingHimself();
+  bool isOutside(const QPoint &);
+  bool isEatingHimself(const QPoint &, const QPoint &);
   void digest();
 
-  bool goTop();
-  bool goLeft();
-  bool goRight();
-  bool goBottom();
+  bool goTop(QPoint &);
+  bool goLeft(QPoint &);
+  bool goRight(QPoint &);
+  bool goBottom(QPoint &);
 
   Snake   &_snake;
   Land    &_land;

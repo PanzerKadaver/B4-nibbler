@@ -21,7 +21,7 @@ EventManager::EventManager(QWidget &parent, GameManager &engine, uint speed) :
 void    EventManager::keyPressEvent(QKeyEvent *e)
 {
   e->accept();
-  if (e->key() == Qt::Key::Key_Z && _top && !_snake.isDie())
+  if (e->key() == Qt::Key_Z && _top && !_snake.isDie())
   {
     _snake.setDir(TOP);
     _bottom = false;
@@ -33,7 +33,7 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
     else
       _timer.stop();
   }
-  else if (e->key() == Qt::Key::Key_Q && _left && !_snake.isDie())
+  else if (e->key() == Qt::Key_Q && _left && !_snake.isDie())
   {
     _snake.setDir(LEFT);
     _bottom = true;
@@ -45,7 +45,7 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
     else
       _timer.stop();
   }
-  else if (e->key() == Qt::Key::Key_D && _right && !_snake.isDie())
+  else if (e->key() == Qt::Key_D && _right && !_snake.isDie())
   {
     _snake.setDir(RIGHT);
     _bottom = true;
@@ -57,7 +57,7 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
     else
       _timer.stop();
   }
-  else if (e->key() == Qt::Key::Key_S && _bottom && !_snake.isDie())
+  else if (e->key() == Qt::Key_S && _bottom && !_snake.isDie())
   {
     _snake.setDir(BOTTOM);
     _bottom = true;

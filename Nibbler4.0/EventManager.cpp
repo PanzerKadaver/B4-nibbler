@@ -5,13 +5,13 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Thu Apr  3 19:06:21 2014 alois
+// Last update Thu Apr  3 19:42:55 2014 Nathan AUBERT
 //
 
 #include <iostream>
 #include <QtGui/QApplication>
 
-#include "Event.hpp"
+#include "EventManager.hpp"
 
 EventManager::EventManager(QWidget &parent, GameManager &engine, uint speed) :
   QWidget(&parent, 0),
@@ -48,7 +48,7 @@ void EventManager::keyAction(Direction eDir, bool isDir)
 void    EventManager::keyPressEvent(QKeyEvent *e)
 {
   e->accept();
-  if (!_snake.isDie())
+  if (_snake.isDie())
     return;
 
   if (e->key() == Qt::Key_Z && _top)
@@ -61,7 +61,7 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
     keyAction(BOTTOM, &_top);
 }
 
-bool EventManager::isOutside()
+bool EventManager::isOutside(const QPoint &next_s)
 {
   if (next_s.x() >= _land.width() || next_s.x() < 0 || next_s.y() >= _land.height() || next_s.y() < 0)
     {
@@ -72,7 +72,7 @@ bool EventManager::isOutside()
   return true;
 }
 
-bool EventManager::isEatingHimself()
+bool EventManager::isEatingHimself(const QPoint &next_s, const QPoint &next_m)
 {
   for (int i = 0; i < _snake.getBody().size(); ++i)
     if (_snake.getBody()[i] == next_s || _snake.getBody()[i] == next_m)
@@ -92,75 +92,79 @@ void EventManager::digest()
 
 bool  EventManager::checkNext(const QPoint &next_m, const QPoint &next_f, const QPoint &next_s, const QPoint &next_t)
 {
-  if (!isOutside() || !isEatingHimself())
+  if (!isOutside(next_s) || !isEatingHimself(next_s, next_m))
     return false;
   if (_land.getCell(next_f).getContent() == 'f')
-  {
-    _land.getCell(next_f).setContent(0);
-    digest();
-  }
+    {
+      _land.getCell(next_f).setContent(0);
+      digest();
+    }
   else if (_land.getCell(next_s).getContent() == 'f')
-  {
-    _land.getCell(next_s).setContent(0);
-    digest();
-  }
+    {
+      _land.getCell(next_s).setContent(0);
+      digest();
+    }
   else if (_land.getCell(next_t).getContent() == 'f')
-  {
-    _land.getCell(next_t).setContent(0);
-    digest();
-  }
+    {
+      _land.getCell(next_t).setContent(0);
+      digest();
+    }
   return true;
 }
 
-bool EventManager::goTop()
+bool EventManager::goTop(QPoint &next_m)
 {
-    next_m = QPoint(_snake.getPos().x(), _snake.getPos().y() - 1);
-    next_f = QPoint(next_m.x() - 1, next_m.y() - 1);
-    next_s = QPoint(next_m.x(), next_m.y() - 1);
-    next_t = QPoint(next_m.x() + 1,  next_m.y() - 1);
+  next_m = QPoint(_snake.getPos().x(), _snake.getPos().y() - 1);
+  QPoint next_f = QPoint(next_m.x() - 1, next_m.y() - 1);
+  QPoint next_s = QPoint(next_m.x(), next_m.y() - 1);
+  QPoint next_t = QPoint(next_m.x() + 1,  next_m.y() - 1);
 
-    return checkNext(next_m, next_f, next_s, next_t);
+  return checkNext(next_m, next_f, next_s, next_t);
 }
-bool EventManager::goLeft()
-{
-    QPoint next_m = QPoint(_snake.getPos().x() - 1, _snake.getPos().y());
-    QPoint next_f = QPoint(next_m.x() - 1, _snake.getPos().y() - 1);
-    QPoint next_s = QPoint(next_m.x() - 1, _snake.getPos().y());
-    QPoint next_t = QPoint(next_m.x() - 1, _snake.getPos().y() + 1);
 
-    return checkNext(next_m, next_f, next_s, next_t);
+bool EventManager::goLeft(QPoint &next_m)
+{
+  next_m = QPoint(_snake.getPos().x() - 1, _snake.getPos().y());
+  QPoint next_f = QPoint(next_m.x() - 1, _snake.getPos().y() - 1);
+  QPoint next_s = QPoint(next_m.x() - 1, _snake.getPos().y());
+  QPoint next_t = QPoint(next_m.x() - 1, _snake.getPos().y() + 1);
+
+  return checkNext(next_m, next_f, next_s, next_t);
 }
-bool EventManager::goRight()
-{
-    QPoint next_m = QPoint(_snake.getPos().x() + 1, _snake.getPos().y());
-    QPoint next_f = QPoint(next_m.x() + 1, _snake.getPos().y() - 1);
-    QPoint next_s = QPoint(next_m.x() + 1, _snake.getPos().y());
-    QPoint next_t = QPoint(next_m.x() + 1, _snake.getPos().y() + 1);
 
-    return checkNext(next_m, next_f, next_s, next_t);
+bool EventManager::goRight(QPoint &next_m)
+{
+  next_m = QPoint(_snake.getPos().x() + 1, _snake.getPos().y());
+  QPoint next_f = QPoint(next_m.x() + 1, _snake.getPos().y() - 1);
+  QPoint next_s = QPoint(next_m.x() + 1, _snake.getPos().y());
+  QPoint next_t = QPoint(next_m.x() + 1, _snake.getPos().y() + 1);
+
+  return checkNext(next_m, next_f, next_s, next_t);
 }
-bool EventManager::goBottom()
-{
-    QPoint next_m = QPoint(_snake.getPos().x(), _snake.getPos().y() + 1);
-    QPoint next_f = QPoint(next_m.x() - 1, next_m.y() + 1);
-    QPoint next_s = QPoint(next_m.x(), next_m.y() + 1);
-    QPoint next_t = QPoint(next_m.x() + 1, next_m.y() + 1);
 
-    return checkNext(next_m, next_f, next_s, next_t);
+bool EventManager::goBottom(QPoint &next_m)
+{
+  next_m = QPoint(_snake.getPos().x(), _snake.getPos().y() + 1);
+  QPoint next_f = QPoint(next_m.x() - 1, next_m.y() + 1);
+  QPoint next_s = QPoint(next_m.x(), next_m.y() + 1);
+  QPoint next_t = QPoint(next_m.x() + 1, next_m.y() + 1);
+
+  return checkNext(next_m, next_f, next_s, next_t);
 }
 
 bool    EventManager::moveSnake(void)
 {
   bool canGoNext;
+  QPoint next_m;
 
   if (_snake.getDir() == TOP)
-    canGoNext = goTop();
+    canGoNext = goTop(next_m);
   else if (_snake.getDir() == LEFT)
-    canGoNext = goLeft();
+    canGoNext = goLeft(next_m);
   else if (_snake.getDir() == RIGHT)
-    canGoNext = goRight();
+    canGoNext = goRight(next_m);
   else
-    canGoNext = goBottom();
+    canGoNext = goBottom(next_m);
 
   if (canGoNext)
     {

@@ -1,7 +1,7 @@
 #ifndef NIBLER_SNAKE_HPP_
 # define NIBLER_SNAKE_HPP_
 
-#include <QtCore\QtCore>
+#include <QtCore/QtCore>
 #include <deque>
 
 #include "Nibbler.hpp"

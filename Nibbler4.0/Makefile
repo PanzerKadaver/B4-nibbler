@@ -5,10 +5,10 @@
 ## Login   <aubert_n@epitech.net>
 ##
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Thu Apr  3 15:25:18 2014 Nathan AUBERT
+## Last update Thu Apr  3 19:33:38 2014 Nathan AUBERT
 ##
 
-CXX = g++ -g3
+CXX = clang++ -g3
 
 RM = rm -f
 

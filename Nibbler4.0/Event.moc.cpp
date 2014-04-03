@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "Event.hpp"
+#include "EventManager.hpp"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'Event.hpp' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
@@ -92,4 +92,4 @@ int EventManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 QT_END_MOC_NAMESPACE
 
-#include "Event.cpp"
+#include "EventManager.cpp"
