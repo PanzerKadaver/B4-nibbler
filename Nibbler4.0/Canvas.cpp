@@ -50,16 +50,21 @@ void    Canvas::DrawSnakeBody(QPainter &painter, const Snake::Body &body)
 {
   QColor  yellow(qRgb(254, 231, 0));
   uint    i = 0;
-  uint     delta = ((MAP_UNIT * 3) - MAP_UNIT) / body.size();
+  qreal   delta = ((MAP_UNIT * 3) - MAP_UNIT) / ((qreal)body.size());
+
+  //std::cout << "Delta body : " << delta << std::endl;
 
   painter.setBrush(yellow);
   while (i < body.size())
   {
-    painter.drawEllipse((body[i].x() * MAP_UNIT) - MAP_UNIT + (delta * (body.size() - i) / 2),
-      (body[i].y() * MAP_UNIT) - MAP_UNIT + (delta * (body.size() - i) / 2),
-      (MAP_UNIT) + (delta * i), (MAP_UNIT) + (delta * i));
+    //qreal     size = ((MAP_UNIT) + (delta * i)) / 2;
+    qreal       size = MAP_UNIT;
+    QPointF   pos = QPointF(body[i].x() * MAP_UNIT + MAP_UNIT / 2 , body[i].y() * MAP_UNIT + MAP_UNIT / 2);
+    painter.drawEllipse(pos, size, size);
+    //std::cout << "Body[" << i << "] C(" << body[i].x() << "/" << body[i].y() << ") P(" << pos.x() << "/" << pos.y() << ") S(" << size << ")" << std::endl;
     ++i;
   };
+  //system("PAUSE");
 }
 
 void    Canvas::DrawSnakeTongue(QPainter &painter, const QPoint &pos, Direction dir)
