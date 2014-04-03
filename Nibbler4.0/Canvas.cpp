@@ -75,32 +75,35 @@ void    Canvas::DrawSnakeTongue(QPainter &painter, const QPoint &pos, Direction 
   painter.drawEllipse(70, 40, MAP_UNIT, MAP_UNIT);*/
 }
 
+// not sure of the type of pos.x() and pos.y()
+static uint calcPos(uint pos, uint u, bool b)
+{
+  return pos * u + u - (u * b + u / 4);
+}
+
 void    Canvas::DrawSnakeHead(QPainter &painter, const QPoint &pos, Direction dir)
 {
-  QColor  yellow(qRgb(254, 231, 0));
-  QColor  black(qRgb(0, 0, 0));
+  QColor	yellow(qRgb(254, 231, 0));
+  QColor	black(qRgb(0, 0, 0));
+  uint		u = MAP_UNIT;
 
   painter.setBrush(yellow);
-  painter.drawEllipse((pos.x() * MAP_UNIT) - MAP_UNIT, (pos.y() * MAP_UNIT) - MAP_UNIT, (MAP_UNIT * 3), (MAP_UNIT * 3));
+  painter.drawEllipse((pos.x() * u) - u, (pos.y() * u) - u, u * 3, u * 3);
   painter.setBrush(QBrush(black));
-  if (dir == RIGHT)
-  {
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-  }
-  else if (dir == LEFT)
-  {
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-  }
-  else if (dir == BOTTOM)
-  {
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-  }
+  if (dir == RIGHT || dir == LEFT)
+    {
+      uint posX = calcPos(pos.x(), u, dir == LEFT);
+      painter.drawEllipse(posX, calcPos(pos.y(), u, 1), u / 2, u / 2);
+      painter.drawEllipse(posX, calcPos(pos.y(), u, 0), u / 2, u / 2);
+    }
+  else if (dir == BOTTOM || dir == TOP)
+    {
+      uint posY = calcPos(pos.y(), u, dir == TOP);
+      painter.drawEllipse(calcPos(pos.x(), u, 1), posY, u / 2, u / 2);
+      painter.drawEllipse(calcPos(pos.x(), u, 0), posY, u / 2, u / 2);
+    }
   else
-  {
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-    painter.drawEllipse((pos.x() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 0) + MAP_UNIT / 4), (pos.y() * MAP_UNIT) + MAP_UNIT - ((MAP_UNIT * 1) + MAP_UNIT / 4), (MAP_UNIT / 2), (MAP_UNIT / 2));
-  }
+    {
+      // throw error ?
+    }
 }
