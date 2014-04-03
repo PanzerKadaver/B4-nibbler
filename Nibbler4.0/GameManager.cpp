@@ -9,6 +9,7 @@ GameManager::GameManager(uint width, uint height, uint unit) :
 {
   _land = new Land(width, height, unit);
   _snake = new Snake(QPoint(width / 2, height / 2), 4, this->getLand());
+  srand(time(NULL));
 }
 GameManager::~GameManager(void)
 {
@@ -62,7 +63,6 @@ bool    GameManager::popFood()
   std::vector<QPoint> empty;
   uint                random;
 
-  srand(time(NULL));
   for (int i = 0; i < _land->width(); i++)
     for (int j = 0; j < _land->height(); j++)
       if (_land->getCell(i, j).getContent() == 0)
@@ -72,6 +72,7 @@ bool    GameManager::popFood()
   if (empty.size() == 0)
     return false;
   random = rand() % empty.size();
+  std::cout << "Rand : " << random << std::endl;
   std::cout << "New apple in [" << empty[random].x() << "][" << empty[random].y() << "]" << std::endl;
   _land->getCell(empty[random]).setContent('f');
   return true;
