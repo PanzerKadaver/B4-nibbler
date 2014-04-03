@@ -51,25 +51,30 @@ void    Snake::addBody(void)
 {
   _body.push_front(QPoint(_pos.x(), _pos.y()));
 }
+
 void    Snake::move(const QPoint &dest)
 {
-  uint   i = 0;
+  int  i = _body.size() - 1;
+  QPoint  old;
+  QPoint  t;
 
-  while (i < _body.size() - 1)
-  {
-    _land.getCell(_body[i]).setContent(0);
-    _body[i].setX(_body[i + 1].x());
-    _body[i].setY(_body[i + 1].y());
-    _land.getCell(_body[i]).setContent('s');
-    ++i;
-  }
-  _land.getCell(_body[_body.size() - 1]).setContent(0);
-  _body[_body.size() - 1].setX(_pos.x());
-  _body[_body.size() - 1].setY(_pos.y());
-  _land.getCell(_body[_body.size() - 1]).setContent('s');
-  _land.getCell(_pos).setContent(0);
+  _land.getCell(_body[i].x(), _body[i].y()).setContent(0);
+  old = _body[i];
+  _body[i].setX(_pos.x());
+  _body[i].setY(_pos.y());
+  _land.getCell(_body[i].x(), _body[i].y()).setContent('s');
   setPos(dest);
-  _land.getCell(_pos).setContent('s');
+  _land.getCell(_pos.x(), _pos.y()).setContent('s');
+  --i;
+  while (i >= 0)
+  {
+    _land.getCell(_body[i].x(), _body[i].y()).setContent(0);
+    t = old;
+    old = _body[i];
+    _body[i] = t;
+    _land.getCell(_body[i].x(), _body[i].y()).setContent('s');
+    --i;
+  }
 }
 
 void    Snake::die(void)

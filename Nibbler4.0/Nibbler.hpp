@@ -1,7 +1,7 @@
 #ifndef NIBBLER_HPP_
 # define NIBBLER_HPP_
 
-# define MAP_SIZE 50
+# define MAP_SIZE 20
 # define MAP_UNIT 20
 
 enum Direction
