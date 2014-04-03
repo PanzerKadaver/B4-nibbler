@@ -1,3 +1,13 @@
+//
+// Snake.cpp for  in /home/aubert_n/rep/nibbler/Nibbler4.0
+// 
+// Made by Nathan AUBERT
+// Login   <aubert_n@epitech.net>
+// 
+// Started on  Thu Apr  3 21:32:59 2014 Nathan AUBERT
+// Last update Thu Apr  3 21:33:00 2014 Nathan AUBERT
+//
+
 #include <iostream>
 
 #include "Snake.hpp"
