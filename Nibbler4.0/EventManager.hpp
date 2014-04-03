@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:38 2014 alois
-// Last update Thu Apr  3 19:36:48 2014 Nathan AUBERT
+// Last update Thu Apr  3 20:17:11 2014 Nathan AUBERT
 //
 
 #ifndef EVENTMANAGER_HPP_
@@ -25,24 +25,23 @@ public:
   EventManager(QWidget &parent, GameManager &engine, uint speed);
   ~EventManager(void) {};
 
-  public slots:
-    bool    moveSnake(void);
-
-private:
-  void    keyPressEvent(QKeyEvent *e);
-  bool    checkNext(const QPoint &, const QPoint &, const QPoint &, const QPoint &);
-
-  void resetDir();
-  void keyAction(Direction, bool);
-  bool isOutside(const QPoint &);
-  bool isEatingHimself(const QPoint &, const QPoint &);
-  void digest();
+  typedef bool	(EventManager::*func)(QPoint &);
+  struct	op_tab
+  {
+    Direction	d;
+    func	ptr;
+  };
 
   bool goTop(QPoint &);
   bool goLeft(QPoint &);
   bool goRight(QPoint &);
   bool goBottom(QPoint &);
 
+
+public slots:
+  bool    moveSnake(void);
+
+private:
   Snake   &_snake;
   Land    &_land;
   GameManager &_engine;
@@ -51,6 +50,16 @@ private:
   bool    _left;
   bool    _top;
   bool    _bottom;
+
+protected:
+  void    keyPressEvent(QKeyEvent *e);
+  bool    checkNext(const QPoint &, const QPoint &, const QPoint &, const QPoint &);
+
+  void resetDir();
+  void keyAction(Direction, bool);
+  bool isOutside(const QPoint &);
+  bool isEatingHimself(const QPoint &, const QPoint &);
+  void digest();
 };
 
 #endif /* !EVENTMANAGER_HPP_ */

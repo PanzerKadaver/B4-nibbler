@@ -3,7 +3,7 @@
 
 #include "Nibbler.hpp"
 #include "Canvas.hpp"
-#include "Event.hpp"
+#include "EventManager.hpp"
 #include "GameManager.hpp"
 
 int     main(int ac, char **av)

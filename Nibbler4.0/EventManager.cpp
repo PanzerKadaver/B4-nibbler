@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Thu Apr  3 19:42:55 2014 Nathan AUBERT
+// Last update Thu Apr  3 20:17:43 2014 Nathan AUBERT
 //
 
 #include <iostream>
@@ -152,20 +152,29 @@ bool EventManager::goBottom(QPoint &next_m)
   return checkNext(next_m, next_f, next_s, next_t);
 }
 
-bool    EventManager::moveSnake(void)
+EventManager::op_tab	go_function[] = {
+  { TOP, &EventManager::goTop },
+  { LEFT, &EventManager::goLeft },
+  { RIGHT, &EventManager::goRight },
+  { BOTTOM, &EventManager::goBottom }
+};
+
+bool		EventManager::moveSnake(void)
 {
-  bool canGoNext;
-  QPoint next_m;
+  bool		canGoNext = false;
+  QPoint	next_m;
+  Direction	currentDir = _snake.getDir();
+  int		i = 0;
 
-  if (_snake.getDir() == TOP)
-    canGoNext = goTop(next_m);
-  else if (_snake.getDir() == LEFT)
-    canGoNext = goLeft(next_m);
-  else if (_snake.getDir() == RIGHT)
-    canGoNext = goRight(next_m);
-  else
-    canGoNext = goBottom(next_m);
-
+  while (i < 4)
+    {
+      if (currentDir == go_function[i].d)
+	{
+	  canGoNext = (this->*go_function[i].ptr)(next_m);
+	  break;
+	}
+      ++i;
+    }
   if (canGoNext)
     {
       _snake.move(next_m);
