@@ -26,6 +26,7 @@ public:
   void  addBody(void);
   void  move(const QPoint &);
   void  die(void);
+  void  printMap();
 
 private:
   Body        _body;

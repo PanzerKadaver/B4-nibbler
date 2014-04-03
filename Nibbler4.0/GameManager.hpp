@@ -17,6 +17,7 @@ public:
   bool  checkAround(uint, uint) const;
   bool  popFood();
   void  addScore(uint);
+  void  printMap();
 
 private:
   Snake   *_snake;

@@ -8,8 +8,8 @@ GameManager::GameManager(uint width, uint height, uint unit) :
   _score(0)
 {
   _land = new Land(width, height, unit);
-  _snake = new Snake(QPoint(5, 5), 4, this->getLand());
-  //_snake = new Snake(QPoint(width / 2, height / 2), 4, this->getLand());
+  //_snake = new Snake(QPoint(5, 5), 4, this->getLand());
+  _snake = new Snake(QPoint(width / 2, height / 2), 4, this->getLand());
   srand(time(NULL));
 }
 GameManager::~GameManager(void)
@@ -59,16 +59,36 @@ bool    GameManager::checkAround(uint x, uint y) const
   return true;
 }
 
+void    GameManager::printMap()
+{
+  char  c;
+
+  std::cout << "===========================" << std::endl;
+  for (int i = 0; i < _land->width(); i++)
+  {
+    for (int j = 0; j < _land->height(); j++)
+    {
+      if ((c = _land->getCell(j, i).getContent()) == 0)
+        std::cout << ".";
+      else
+        std::cout << c;
+    }
+    std::cout << std::endl;
+  }
+  std::cout << "===========================" << std::endl;
+}
+
 bool    GameManager::popFood()
 {
   std::vector<QPoint> empty;
   uint                random;
 
+  //printMap();
   for (int i = 0; i < _land->width(); i++)
     for (int j = 0; j < _land->height(); j++)
-      if (_land->getCell(i, j).getContent() == 0)
-        if (checkAround(i, j))
-          empty.push_back(QPoint(i, j));
+      if (_land->getCell(j, i).getContent() == 0)
+        if (checkAround(j, i))
+          empty.push_back(QPoint(j, i));
   std::cout << "Free cells : " << empty.size() << std::endl;
   if (empty.size() == 0)
     return false;
