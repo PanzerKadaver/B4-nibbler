@@ -64,9 +64,9 @@ void    GameManager::printMap()
   char  c;
 
   std::cout << "===========================" << std::endl;
-  for (int i = 0; i < _land->width(); i++)
+  for (uint i = 0; i < _land->width(); i++)
   {
-    for (int j = 0; j < _land->height(); j++)
+    for (uint j = 0; j < _land->height(); j++)
     {
       if ((c = _land->getCell(j, i).getContent()) == 0)
         std::cout << ".";
@@ -84,8 +84,8 @@ bool    GameManager::popFood()
   uint                random;
 
   //printMap();
-  for (int i = 0; i < _land->width(); i++)
-    for (int j = 0; j < _land->height(); j++)
+  for (uint i = 0; i < _land->width(); i++)
+    for (uint j = 0; j < _land->height(); j++)
       if (_land->getCell(j, i).getContent() == 0)
         if (checkAround(j, i))
           empty.push_back(QPoint(j, i));

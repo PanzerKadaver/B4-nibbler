@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Thu Apr  3 20:17:43 2014 Nathan AUBERT
+// Last update Thu Apr  3 21:04:44 2014 Nathan AUBERT
 //
 
 #include <iostream>
@@ -74,7 +74,7 @@ bool EventManager::isOutside(const QPoint &next_s)
 
 bool EventManager::isEatingHimself(const QPoint &next_s, const QPoint &next_m)
 {
-  for (int i = 0; i < _snake.getBody().size(); ++i)
+  for (uint i = 0; i < _snake.getBody().size(); ++i)
     if (_snake.getBody()[i] == next_s || _snake.getBody()[i] == next_m)
       {
 	_snake.die();
