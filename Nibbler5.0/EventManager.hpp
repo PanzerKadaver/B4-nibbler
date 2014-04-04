@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:38 2014 alois
-// Last update Thu Apr  3 20:17:11 2014 Nathan AUBERT
+// Last update Fri Apr  4 17:43:18 2014 Nathan AUBERT
 //
 
 #ifndef EVENTMANAGER_HPP_
@@ -36,6 +36,18 @@ public:
   bool goLeft(QPoint &);
   bool goRight(QPoint &);
   bool goBottom(QPoint &);
+
+  typedef void	(EventManager::*dFunc)();
+  struct	key_tab
+  {
+    Qt::Key	key;
+    dFunc	ptr;
+  };
+
+  void	keyTopAction();
+  void	keyBotAction();
+  void	keyLeftAction();
+  void	keyRightAction();
 
 
 public slots:
