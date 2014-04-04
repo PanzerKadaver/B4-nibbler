@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Thu Apr  3 21:04:44 2014 Nathan AUBERT
+// Last update Fri Apr  4 17:53:05 2014 Nathan AUBERT
 //
 
 #include <iostream>
@@ -20,8 +20,8 @@ EventManager::EventManager(QWidget &parent, GameManager &engine, uint speed) :
   _engine(engine)
 {
   setFocusPolicy(Qt::StrongFocus);
-  //connect(&_timer, SIGNAL(timeout()), this, SLOT(moveSnake()));
-  //_timer.start(800 / speed);
+  connect(&_timer, SIGNAL(timeout()), this, SLOT(moveSnake()));
+  _timer.start(100 / speed);
   resetDir();
   _left = false;
 }
@@ -34,31 +34,74 @@ void EventManager::resetDir()
   _top = true;
 }
 
-void EventManager::keyAction(Direction eDir, bool isDir)
+void EventManager::keyTopAction()
 {
-  _snake.setDir(eDir);
-  resetDir();
-  isDir = false;
+  if (_snake.getDir() == BOTTOM)
+    return;
+  _snake.setDir(TOP);
   if (moveSnake())
     _timer.start();
   else
     _timer.stop();
 }
 
+void EventManager::keyBotAction()
+{
+  if (_snake.getDir() == TOP)
+    return;
+  _snake.setDir(BOTTOM);
+  if (moveSnake())
+    _timer.start();
+  else
+    _timer.stop();
+}
+
+void EventManager::keyLeftAction()
+{
+  if (_snake.getDir() == RIGHT)
+    return;
+  _snake.setDir(LEFT);
+  if (moveSnake())
+    _timer.start();
+  else
+    _timer.stop();
+}
+
+void EventManager::keyRightAction()
+{
+  if (_snake.getDir() == LEFT)
+    return;
+  _snake.setDir(RIGHT);
+  if (moveSnake())
+    _timer.start();
+  else
+    _timer.stop();
+}
+
+EventManager::key_tab	go_dir[] = {
+  { Qt::Key_Z, &EventManager::keyTopAction },
+  { Qt::Key_Q, &EventManager::keyLeftAction },
+  { Qt::Key_D, &EventManager::keyRightAction },
+  { Qt::Key_S, &EventManager::keyBotAction }
+};
+
 void    EventManager::keyPressEvent(QKeyEvent *e)
 {
+  int	i = 0;
+
   e->accept();
   if (_snake.isDie())
     return;
 
-  if (e->key() == Qt::Key_Z && _top)
-    keyAction(TOP, &_bottom);
-  else if (e->key() == Qt::Key_Q && _left)
-    keyAction(LEFT, &_right);
-  else if (e->key() == Qt::Key_D && _right)
-    keyAction(RIGHT, &_left);
-  else if (e->key() == Qt::Key_S && _bottom)
-    keyAction(BOTTOM, &_top);
+  while (i < 4)
+    {
+      if (e->key() == go_dir[i].key)
+	{
+	  (this->*go_dir[i].ptr)();
+	  break;
+	}
+      ++i;
+    }
 }
 
 bool EventManager::isOutside(const QPoint &next_s)
