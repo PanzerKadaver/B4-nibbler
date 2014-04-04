@@ -5,11 +5,13 @@
 #include "GameManager.hpp"
 
 GameManager::GameManager(uint width, uint height, uint unit) :
-  _score(0)
+  _score(0),
+  _old(QPoint(0, 0))
 {
   _land = new Land(width, height, unit);
   //_snake = new Snake(QPoint(5, 5), 4, this->getLand());
   _snake = new Snake(QPoint(width / 2, height / 2), 4, this->getLand());
+  popFood();
   srand(time(NULL));
 }
 GameManager::~GameManager(void)
@@ -95,6 +97,12 @@ bool    GameManager::popFood()
   random = rand() % empty.size();
   std::cout << "Rand : " << random << std::endl;
   std::cout << "New apple in [" << empty[random].x() << "][" << empty[random].y() << "]" << std::endl;
-  _land->getCell(empty[random]) = 'f';
+  if (empty[random] != _old)
+  {
+    _land->getCell(empty[random]) = 'f';
+    _old = empty[random];
+  }
+  else
+    popFood();
   return true;
 }

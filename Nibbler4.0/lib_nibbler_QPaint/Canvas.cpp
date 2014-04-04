@@ -58,16 +58,16 @@ void    Canvas::DrawSnakeBody(QPainter &painter)
 {
   QColor  yellow(qRgb(254, 231, 0));
   uint    i = 0;
-  qreal   delta = ((_unit * 3) - _unit) / ((qreal)_body.size());
+  qreal   delta = ((MAP_UNIT * 3) - MAP_UNIT) / ((qreal)_body.size());
 
   //std::cout << "Delta body : " << delta << std::endl;
 
   painter.setBrush(yellow);
   while (i < _body.size())
   {
-    //qreal     size = ((_unit) + (delta * i)) / 2;
-    qreal       size = _unit;
-    QPointF   pos = QPointF(_body[i].x() * _unit + _unit / 2 , _body[i].y() * _unit + _unit / 2);
+    //qreal     size = ((MAP_UNIT) + (delta * i)) / 2;
+    qreal       size = MAP_UNIT;
+    QPointF   pos = QPointF(_body[i].x() * MAP_UNIT + MAP_UNIT / 2 , _body[i].y() * MAP_UNIT + MAP_UNIT / 2);
     painter.drawEllipse(pos, size, size);
     //std::cout << "Body[" << i << "] C(" << body[i].x() << "/" << body[i].y() << ") P(" << pos.x() << "/" << pos.y() << ") S(" << size << ")" << std::endl;
     ++i;
@@ -78,9 +78,9 @@ void    Canvas::DrawSnakeBody(QPainter &painter)
 void    Canvas::DrawSnakeTongue(QPainter &painter)
 {
   /*painter.setBrush(QBrush(black_yellow));
-  painter.drawEllipse(40, 25, _unit * 2.5, _unit * 2.5);
+  painter.drawEllipse(40, 25, MAP_UNIT * 2.5, MAP_UNIT * 2.5);
   painter.setBrush(QBrush(red));
-  painter.drawEllipse(70, 40, _unit, _unit);*/
+  painter.drawEllipse(70, 40, MAP_UNIT, MAP_UNIT);*/
 }
 
 // not sure of the type of pos.x() and pos.y()
