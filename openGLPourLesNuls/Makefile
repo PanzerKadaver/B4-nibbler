@@ -5,23 +5,32 @@
 ## Login   <aubert_n@epitech.net>
 ##
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Fri Apr  4 22:13:37 2014 Nathan AUBERT
+## Last update Sat Apr  5 16:01:03 2014 Nathan AUBERT
 ##
 
-CXX = clang++ -g3
+CXX = g++ -g3
 
 RM = rm -f
 
 CXXFLAGS += -W -Wextra -Wall
-CXXFLAGS += -I/usr/local/SFML-2.1/include/
+CXXFLAGS += -I/usr/local/GLEW/include
+CXXFLAGS += -I/usr/local/SFML-2.1/include
 
 LDFLAGS += -ldl
-LDFLAGS += -L/usr/local/SFML-2.1/lib/
+LDFLAGS += '-Wl,-rpath=/usr/local/GLEW/lib'
+LDFLAGS += '-Wl,-rpath=/usr/local/SFML-2.1/lib'
+LDFLAGS += -L/usr/local/GLEW/lib
+LDFLAGS += -L/usr/local/SFML-2.1/lib
+LDFLAGS += -L/usr/lib64
 LDFLAGS += -lsfml-graphics
 LDFLAGS += -lsfml-window
 LDFLAGS += -lsfml-system
+LDFLAGS += -lGLU
+LDFLAGS += -lGLEW
+LDFLAGS += -lGL
+LDFLAGS += -ljpeg
 
-NAME = a.out
+NAME = openGl4DaNewbies
 
 SRCS =	main.cpp \
 
