@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-#include "include/QtCanvas.hpp"
+#include "QtCanvas.hpp"
 
 QtCanvas::QtCanvas(QWidget &parent, const QPoint &pos, const QSize &size, uint frameRate) :
     QWidget(&parent),

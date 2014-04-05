@@ -17,7 +17,7 @@ I_DIR	=	include
 CXXFLAGS	+=	-W -Wall -Wextra #-Werror
 #CXXFLAGS	+=	-ansi -pedantic
 #CXXFLAGS	+=	-fPIC -Wpadded
-CXXFLAGS	+=	-I/$(I_DIR)
+CXXFLAGS  +=  -I. -I../
 CXXFLAGS	+=	-I/usr/local/Trolltech/Qt-4.8.5/include                                          
 
 LDFLAGS	+=	-L/usr/local/Trolltech/Qt-4.8.5/lib/

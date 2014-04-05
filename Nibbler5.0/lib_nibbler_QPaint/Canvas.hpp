@@ -4,7 +4,7 @@
 #include <QtGui/QWidget>
 #include <deque>
 
-#include "../../Nibbler.hpp"
+#include "Nibbler.hpp"
 #include "QtCanvas.hpp"
 
 class Canvas : public QtCanvas
