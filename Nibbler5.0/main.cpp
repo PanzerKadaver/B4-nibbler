@@ -37,12 +37,31 @@ int     run(int ac, char **av, int width, int height, const std::string &path)
   QDesktopWidget widget;
   QRect mainScreenSize = widget.availableGeometry(widget.primaryScreen());
 
-  std::cout << mainScreenSize.width() << "/" << mainScreenSize.height() << std::endl;
+  if (MAP_UNIT < 5 || MAP_UNIT > 50)
+  {
+    std::cerr << "Map unit must be between 5 and 50px" << std::endl;
+    return (-1);
+  }
+  if (width < 15 || width > 100)
+  {
+    std::cerr << "Map width must be between 15 and 100 units" << std::endl;
+    return -1;
+  }
+  if (height < 15 || height > 100)
+  {
+    std::cerr << "Map height must be between 15 and 100 units" << std::endl;
+    return -1;
+  }
+  if (width * MAP_UNIT > mainScreenSize.width() || height * MAP_UNIT > mainScreenSize.height())
+  {
+    std::cerr << "Map resolution " << width * MAP_UNIT << "x" << height * MAP_UNIT << ", exceed your screen resolution " << mainScreenSize.width() << "x" << mainScreenSize.height() << std::endl;
+    return -1;
+  }
 
   if (!(libHandler = Library::open(path.c_str())))
   {
     std::cerr << Library::error() << std::endl;
-    exit(-1);
+    return (-1);
   }
   else
     std::cout << "Lib sucessfully loaded" << std::endl;
@@ -50,7 +69,7 @@ int     run(int ac, char **av, int width, int height, const std::string &path)
   if (!(newCanvas = reinterpret_cast<new_func>(Library::sym(libHandler, "newCanvas"))))
   {
     std::cerr << Library::error() << std::endl;
-    exit(-1);
+    return (-1);
   }
   else
     std::cout << "Function loaded" << std::endl;
@@ -58,7 +77,7 @@ int     run(int ac, char **av, int width, int height, const std::string &path)
   if (!(showCanvas = reinterpret_cast<utils_func>(Library::sym(libHandler, "showCanvas"))))
   {
     std::cerr << Library::error() << std::endl;
-    exit(-1);
+    return (-1);
   }
   else
     std::cout << "Function loaded" << std::endl;
@@ -66,7 +85,7 @@ int     run(int ac, char **av, int width, int height, const std::string &path)
   if (!(deleteCanvas = reinterpret_cast<utils_func>(Library::sym(libHandler, "deleteCanvas"))))
   {
     std::cerr << Library::error() << std::endl;
-    exit(-1);
+    return (-1);
   }
   else
     std::cout << "Function loaded" << std::endl;
@@ -75,6 +94,7 @@ int     run(int ac, char **av, int width, int height, const std::string &path)
 
   mainFrame->setWindowTitle("Nibbler");
   mainFrame->resize(QSize(width * MAP_UNIT + 1, height * MAP_UNIT + 1));
+  mainFrame->move(0, 0);
   mainFrame->show();
 
   showCanvas(myCanvas);

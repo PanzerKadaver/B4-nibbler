@@ -89,9 +89,9 @@ bool    GameManager::popFood()
   //printMap();
   for (uint i = 1; i < _land->width() - 1; i++)
     for (uint j = 1; j < _land->height() - 1; j++)
-      if (_land->getCell(j, i) == 0)
-        if (checkAround(j, i))
-          empty.push_back(QPoint(j, i));
+      if (_land->getCell(i, j) == 0)
+        if (checkAround(i, j))
+          empty.push_back(QPoint(i, j));
   std::cout << "Free cells : " << empty.size() << std::endl;
   if (empty.size() == 0)
     return false;
