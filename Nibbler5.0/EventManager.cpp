@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Fri Apr  4 17:53:05 2014 Nathan AUBERT
+// Last update Sun Apr  6 00:06:22 2014 Nathan AUBERT
 //
 
 #include <iostream>
@@ -116,7 +116,7 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
 
 bool EventManager::isOutside(const QPoint &next_s)
 {
-  if (next_s.x() >= _land.width() || next_s.x() < 0 || next_s.y() >= _land.height() || next_s.y() < 0)
+  if ((uint)next_s.x() >= _land.width() || next_s.x() < 0 || (uint)next_s.y() >= _land.height() || next_s.y() < 0)
   {
     _snake.die();
     _timer.stop();

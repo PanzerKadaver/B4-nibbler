@@ -5,7 +5,7 @@
 ## Login   <aubert_n@epitech.net>
 ##
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Fri Apr  4 21:52:39 2014 Nathan AUBERT
+## Last update Sun Apr  6 00:09:05 2014 Nathan AUBERT
 ##
 
 CXX = clang++ -g3
@@ -13,7 +13,6 @@ CXX = clang++ -g3
 RM = rm -f
 
 CXXFLAGS += -W -Wextra -Wall
-CXXFLAGS += #-ansi -pedantic
 CXXFLAGS += -I/usr/local/SFML-2.1/include/SFML
 CXXFLAGS += -I/usr/local/Trolltech/Qt-4.8.5/include
 
