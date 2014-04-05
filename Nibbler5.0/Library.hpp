@@ -53,12 +53,12 @@ namespace Library
 
   char            *error(void)
   {
-    int         error_code;
-    static char errstr[128];
-
 # if defined(__GNUG__)
     return dlerror();
 # elif defined(_MSC_VER)
+    int         error_code;
+    static char errstr[128];
+
     if((error_code = GetLastError()) == 0)
       return((char *)0);
     SetLastError(0);

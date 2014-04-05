@@ -15,7 +15,7 @@ public:
   typedef char  **land;
 
   // Ctor
-  Canvas(QWidget &, const QPoint &, const QSize &, const QPoint &, const SnakeBody &, const Direction &, const bool &, const land &, uint, uint, uint);
+  Canvas(QWidget &, const QPoint &, const QSize &, const QPoint &, const SnakeBody &, const Direction &, const bool &, const land &);
   // Dtor
   ~Canvas(void) {};
 
@@ -36,7 +36,6 @@ private:
   const bool      &_die;
   uint            _width;
   uint            _height;
-  uint            _unit;
   const land      &_land;
 };
 

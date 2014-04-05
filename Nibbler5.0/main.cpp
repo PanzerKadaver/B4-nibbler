@@ -16,17 +16,17 @@
 #include "GameManager.hpp"
 #include "Library.hpp"
 
-int     main(int ac, char **av)
+int     run(int ac, char **av, int width, int height, const std::string &path)
 {
   typedef char  **land;
   typedef std::deque<QPoint> SnakeBody;
   typedef void    *Canvas;
-  typedef Canvas  (*new_func)(QWidget &, const QPoint &, const QSize &, const QPoint &, const SnakeBody &, const Direction &, const bool &, const land &, uint, uint, uint);
+  typedef Canvas  (*new_func)(QWidget &, const QPoint &, const QSize &, const QPoint &, const SnakeBody &, const Direction &, const bool &, const land &);
   typedef void    (*utils_func)(Canvas);
 
   QApplication    app(ac, av);
   QFrame          *mainFrame = new QFrame;
-  GameManager     engine(MAP_SIZE, MAP_SIZE, MAP_UNIT);
+  GameManager     engine(width, height, MAP_UNIT);
   EventManager    *events  = new EventManager(*mainFrame, engine, 0.75);
   void            *libHandler;
   Canvas          myCanvas;
@@ -34,7 +34,12 @@ int     main(int ac, char **av)
   utils_func      showCanvas;
   utils_func      deleteCanvas;
 
-  if (!(libHandler = Library::open("./lib_nibbler_SFML.dll")))
+  QDesktopWidget widget;
+  QRect mainScreenSize = widget.availableGeometry(widget.primaryScreen());
+
+  std::cout << mainScreenSize.width() << "/" << mainScreenSize.height() << std::endl;
+
+  if (!(libHandler = Library::open(path.c_str())))
   {
     std::cerr << Library::error() << std::endl;
     exit(-1);
@@ -66,10 +71,10 @@ int     main(int ac, char **av)
   else
     std::cout << "Function loaded" << std::endl;
 
-  myCanvas = newCanvas(*mainFrame, QPoint(0, 0), QSize(MAP_SIZE * MAP_UNIT + 1, MAP_SIZE * MAP_UNIT + 1), engine.getSnake().getPos(), engine.getSnake().getBody(), engine.getSnake().getDir(), engine.getSnake().isDie(), engine.getLand().getMap(), MAP_SIZE, MAP_SIZE, MAP_UNIT);
+  myCanvas = newCanvas(*mainFrame, QPoint(0, 0), QSize(width * MAP_UNIT + 1, height * MAP_UNIT + 1), engine.getSnake().getPos(), engine.getSnake().getBody(), engine.getSnake().getDir(), engine.getSnake().isDie(), engine.getLand().getMap());
 
   mainFrame->setWindowTitle("Nibbler");
-  mainFrame->resize(QSize(MAP_SIZE * MAP_UNIT + 1, MAP_SIZE * MAP_UNIT + 1));
+  mainFrame->resize(QSize(width * MAP_UNIT + 1, height * MAP_UNIT + 1));
   mainFrame->show();
 
   showCanvas(myCanvas);
@@ -89,4 +94,16 @@ int     main(int ac, char **av)
     abort();
   }
   return (0);
+}
+
+int   main(int ac, char **av)
+{
+  if (ac != 4)
+  {
+    std::cerr << "Usage : ./nibbler width height libpath" << std::endl;
+    return (-1);
+  }
+
+  run(ac, av, atoi(av[1]), atoi(av[2]), std::string(av[3]));
+  return 0;
 }

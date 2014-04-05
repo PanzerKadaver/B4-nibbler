@@ -12,8 +12,8 @@ extern "C"
 {
   typedef std::deque<QPoint> SnakeBody;
 
-  EXPORT Canvas   *newCanvas(QWidget &parent, const QPoint &pos, const QSize &size, const QPoint &head, const SnakeBody &body, const Direction &dir, const bool &die, char **&land, uint width, uint height, uint unit) {
-    return new Canvas(parent, pos, size, head, body, dir, die, land, width, height, unit);
+  EXPORT Canvas   *newCanvas(QWidget &parent, const QPoint &pos, const QSize &size, const QPoint &head, const SnakeBody &body, const Direction &dir, const bool &die, char **&land) {
+    return new Canvas(parent, pos, size, head, body, dir, die, land);
   };
   EXPORT void     showCanvas(Canvas *canvas) { canvas->show(); };
   EXPORT  void    deleteCanvas(Canvas *canvas) { delete canvas; };
