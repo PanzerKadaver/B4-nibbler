@@ -16,4 +16,5 @@ extern "C"
     return new Canvas(parent, pos, size, head, body, dir, die, land, width, height, unit);
   };
   EXPORT void     showCanvas(Canvas *canvas) { canvas->show(); };
+  EXPORT  void    deleteCanvas(Canvas *canvas) { delete canvas; };
 }

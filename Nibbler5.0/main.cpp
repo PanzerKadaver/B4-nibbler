@@ -58,7 +58,7 @@ int     main(int ac, char **av)
   else
     std::cout << "Function loaded" << std::endl;
 
-    if (!(deleteCanvas = reinterpret_cast<utils_func>(Library::sym(libHandler, "deleteCanvas"))))
+  if (!(deleteCanvas = reinterpret_cast<utils_func>(Library::sym(libHandler, "deleteCanvas"))))
   {
     std::cerr << Library::error() << std::endl;
     exit(-1);
