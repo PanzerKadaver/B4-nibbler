@@ -137,19 +137,19 @@ bool  EventManager::checkNext(const QPoint &next_m, const QPoint &next_f, const 
 {
   if (!isOutside(next_s) || !isEatingHimself(next_s, next_m))
     return false;
-  if (_land.getCell(next_f).getContent() == 'f')
+  if (_land.getCell(next_f) == 'f')
     {
-      _land.getCell(next_f).setContent(0);
+      _land.getCell(next_f) = 0;
       digest();
     }
-  else if (_land.getCell(next_s).getContent() == 'f')
+  else if (_land.getCell(next_s) == 'f')
     {
-      _land.getCell(next_s).setContent(0);
+      _land.getCell(next_s) = 0;
       digest();
     }
-  else if (_land.getCell(next_t).getContent() == 'f')
+  else if (_land.getCell(next_t) == 'f')
     {
-      _land.getCell(next_t).setContent(0);
+      _land.getCell(next_t) = 0;
       digest();
     }
   return true;

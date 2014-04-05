@@ -21,12 +21,12 @@ QtCanvas::QtCanvas(QWidget &parent, const QPoint &pos, const QSize &size, uint f
     QWidget::resize(size);
 }
 
-void    QtCanvas::showEvent(QShowEvent *e)
+void    QtCanvas::showEvent(QShowEvent *)
 {
-    std::cout << "Show event" << std::endl;
+    //std::cout << "Show event" << std::endl;
     if (!_init)
     {
-        std::cout << "Show event init" << std::endl;
+        //std::cout << "Show event init" << std::endl;
         OnInit();
 
         connect(&_t, SIGNAL(timeout()), this, SLOT(repaint()));
@@ -35,7 +35,7 @@ void    QtCanvas::showEvent(QShowEvent *e)
     }
 }
 
-void    QtCanvas::paintEvent(QPaintEvent *e)
+void    QtCanvas::paintEvent(QPaintEvent *)
 {
     QPainter    painter(this);
 
