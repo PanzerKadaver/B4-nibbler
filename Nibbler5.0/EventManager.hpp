@@ -23,7 +23,7 @@ class EventManager : public QWidget
 
 public:
   EventManager(QWidget &parent, GameManager &engine, float speed);
-  ~EventManager(void) {};
+  ~EventManager(void);
 
   typedef bool	(EventManager::*func)(QPoint &);
   struct	op_tab
@@ -49,6 +49,7 @@ public:
   void	keyLeftAction();
   void	keyRightAction();
 
+  void  start();
 
 public slots:
   bool    moveSnake(void);
@@ -62,6 +63,7 @@ private:
   bool    _left;
   bool    _top;
   bool    _bottom;
+  float   _speed;
 
 protected:
   void    keyPressEvent(QKeyEvent *e);

@@ -11,15 +11,15 @@
 #ifndef NIBBLER_HPP_
 # define NIBBLER_HPP_
 
-# define MAP_SIZE 15
+# define MAP_SIZE 25
 # define MAP_UNIT 32
 
 enum Direction
 {
   RIGHT,
+  BOTTOM,
   LEFT,
-  TOP,
-  BOTTOM
+  TOP
 };
 
 #endif /* !NIBBLER_HPP_ */

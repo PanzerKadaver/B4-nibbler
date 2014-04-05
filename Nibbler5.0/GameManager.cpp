@@ -16,6 +16,7 @@ GameManager::GameManager(uint width, uint height, uint unit) :
 }
 GameManager::~GameManager(void)
 {
+  std::cout << "GameManager say goodbye" << std::endl;
   delete _snake;
   delete _land;
 }

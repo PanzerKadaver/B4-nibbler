@@ -17,13 +17,26 @@ EventManager::EventManager(QWidget &parent, GameManager &engine, float speed) :
   QWidget(&parent, 0),
   _snake(engine.getSnake()),
   _land(engine.getLand()),
-  _engine(engine)
+  _engine(engine),
+  _speed(speed)
 {
   setFocusPolicy(Qt::StrongFocus);
+  setAttribute(Qt::WA_DeleteOnClose);
+
   connect(&_timer, SIGNAL(timeout()), this, SLOT(moveSnake()));
-  _timer.start(100 / speed);
   resetDir();
   _left = false;
+}
+
+EventManager::~EventManager()
+{
+  std::cout << "EventManager say goodbye" << std::endl;
+}
+
+void  EventManager::start()
+{
+  _timer.start(100 / _speed);
+  std::cout << "Game is started" << std::endl;
 }
 
 void EventManager::resetDir()
@@ -38,44 +51,41 @@ void EventManager::keyTopAction()
 {
   if (_snake.getDir() == BOTTOM)
     return;
+  _timer.stop();
   _snake.setDir(TOP);
   if (moveSnake())
     _timer.start();
-  else
-    _timer.stop();
+
 }
 
 void EventManager::keyBotAction()
 {
   if (_snake.getDir() == TOP)
     return;
+  _timer.stop();
   _snake.setDir(BOTTOM);
   if (moveSnake())
     _timer.start();
-  else
-    _timer.stop();
 }
 
 void EventManager::keyLeftAction()
 {
   if (_snake.getDir() == RIGHT)
     return;
+  _timer.stop();
   _snake.setDir(LEFT);
   if (moveSnake())
     _timer.start();
-  else
-    _timer.stop();
 }
 
 void EventManager::keyRightAction()
 {
   if (_snake.getDir() == LEFT)
     return;
+  _timer.stop();
   _snake.setDir(RIGHT);
   if (moveSnake())
     _timer.start();
-  else
-    _timer.stop();
 }
 
 EventManager::key_tab	go_dir[] = {
@@ -97,7 +107,6 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
   {
     if (e->key() == go_dir[i].key)
     {
-      _timer.stop();
       (this->*go_dir[i].ptr)();
       break;
     }

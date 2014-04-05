@@ -22,18 +22,19 @@ int     main(int ac, char **av)
   typedef std::deque<QPoint> SnakeBody;
   typedef void    *Canvas;
   typedef Canvas  (*new_func)(QWidget &, const QPoint &, const QSize &, const QPoint &, const SnakeBody &, const Direction &, const bool &, const land &, uint, uint, uint);
-  typedef void    (*show_func)(Canvas);
+  typedef void    (*utils_func)(Canvas);
 
   QApplication    app(ac, av);
   QFrame          *mainFrame = new QFrame;
   GameManager     engine(MAP_SIZE, MAP_SIZE, MAP_UNIT);
-  EventManager    events(*mainFrame, engine, 0.75);
+  EventManager    *events  = new EventManager(*mainFrame, engine, 0.75);
   void            *libHandler;
   Canvas          myCanvas;
   new_func        newCanvas;
-  show_func       showCanvas;
+  utils_func      showCanvas;
+  utils_func      deleteCanvas;
 
-  if (!(libHandler = Library::open("./lib_nibbler_QPaint.dll")))
+  if (!(libHandler = Library::open("./lib_nibbler_SFML.dll")))
   {
     std::cerr << Library::error() << std::endl;
     exit(-1);
@@ -49,7 +50,15 @@ int     main(int ac, char **av)
   else
     std::cout << "Function loaded" << std::endl;
 
-  if (!(showCanvas = reinterpret_cast<show_func>(Library::sym(libHandler, "showCanvas"))))
+  if (!(showCanvas = reinterpret_cast<utils_func>(Library::sym(libHandler, "showCanvas"))))
+  {
+    std::cerr << Library::error() << std::endl;
+    exit(-1);
+  }
+  else
+    std::cout << "Function loaded" << std::endl;
+
+    if (!(deleteCanvas = reinterpret_cast<utils_func>(Library::sym(libHandler, "deleteCanvas"))))
   {
     std::cerr << Library::error() << std::endl;
     exit(-1);
@@ -63,11 +72,15 @@ int     main(int ac, char **av)
   mainFrame->resize(QSize(MAP_SIZE * MAP_UNIT + 1, MAP_SIZE * MAP_UNIT + 1));
   mainFrame->show();
 
-  events.show();
   showCanvas(myCanvas);
+  events->show();
 
+  events->start();
   app.exec();
 
+  deleteCanvas(myCanvas);
+  delete events;
+  delete mainFrame;
   if (!Library::close(libHandler))
     std::cout << "Library unloaded" << std::endl;
   else
@@ -75,6 +88,5 @@ int     main(int ac, char **av)
     std::cerr << Library::error() << std::endl;
     abort();
   }
-
   return (0);
 }

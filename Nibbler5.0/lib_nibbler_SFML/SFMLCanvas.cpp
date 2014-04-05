@@ -8,6 +8,7 @@ SFMLCanvas::SFMLCanvas(QWidget &parent, const QPoint &pos, const QSize &size, ui
   setAttribute(Qt::WA_PaintOnScreen);
   setAttribute(Qt::WA_OpaquePaintEvent);
   setAttribute(Qt::WA_NoSystemBackground);
+  setAttribute(Qt::WA_DeleteOnClose);
 
   QWidget::move(pos);
   QWidget::resize(size);
@@ -33,4 +34,5 @@ void          SFMLCanvas::showEvent(QShowEvent *)
 void          SFMLCanvas::paintEvent(QPaintEvent *)
 {
   OnUpdate();
+  display();
 }
