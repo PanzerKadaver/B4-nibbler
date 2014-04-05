@@ -5,7 +5,7 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Sat Apr  5 21:00:53 2014 Nathan AUBERT
-## Last update Sat Apr  5 21:08:43 2014 Nathan AUBERT
+## Last update Sat Apr  5 21:10:02 2014 Nathan AUBERT
 ##
 
 CXX	=	g++
@@ -44,7 +44,6 @@ fclean:	clean
 	$(RM) $(BIN)
 	$(RM) $(LN)
 
-re:
-	fclean all
+re:	fclean all
 
 .PHONY:	all clean fclean re
