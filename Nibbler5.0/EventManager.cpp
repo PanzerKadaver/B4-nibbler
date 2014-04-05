@@ -13,7 +13,7 @@
 
 #include "EventManager.hpp"
 
-EventManager::EventManager(QWidget &parent, GameManager &engine, uint speed) :
+EventManager::EventManager(QWidget &parent, GameManager &engine, float speed) :
   QWidget(&parent, 0),
   _snake(engine.getSnake()),
   _land(engine.getLand()),
@@ -94,24 +94,25 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
     return;
 
   while (i < 4)
+  {
+    if (e->key() == go_dir[i].key)
     {
-      if (e->key() == go_dir[i].key)
-	{
-	  (this->*go_dir[i].ptr)();
-	  break;
-	}
-      ++i;
+      _timer.stop();
+      (this->*go_dir[i].ptr)();
+      break;
     }
+    ++i;
+  }
 }
 
 bool EventManager::isOutside(const QPoint &next_s)
 {
   if (next_s.x() >= _land.width() || next_s.x() < 0 || next_s.y() >= _land.height() || next_s.y() < 0)
-    {
-      _snake.die();
-      _timer.stop();
-      return false;
-    }
+  {
+    _snake.die();
+    _timer.stop();
+    return false;
+  }
   return true;
 }
 
@@ -119,12 +120,12 @@ bool EventManager::isEatingHimself(const QPoint &next_s, const QPoint &next_m)
 {
   for (uint i = 0; i < _snake.getBody().size(); ++i)
     if (_snake.getBody()[i] == next_s || _snake.getBody()[i] == next_m)
-      {
-	_snake.die();
-	_timer.stop();
-	return false;
-      }
-  return true;
+    {
+      _snake.die();
+      _timer.stop();
+      return false;
+    }
+    return true;
 }
 
 void EventManager::digest()
@@ -138,20 +139,20 @@ bool  EventManager::checkNext(const QPoint &next_m, const QPoint &next_f, const 
   if (!isOutside(next_s) || !isEatingHimself(next_s, next_m))
     return false;
   if (_land.getCell(next_f) == 'f')
-    {
-      _land.getCell(next_f) = 0;
-      digest();
-    }
+  {
+    _land.getCell(next_f) = 0;
+    digest();
+  }
   else if (_land.getCell(next_s) == 'f')
-    {
-      _land.getCell(next_s) = 0;
-      digest();
-    }
+  {
+    _land.getCell(next_s) = 0;
+    digest();
+  }
   else if (_land.getCell(next_t) == 'f')
-    {
-      _land.getCell(next_t) = 0;
-      digest();
-    }
+  {
+    _land.getCell(next_t) = 0;
+    digest();
+  }
   return true;
 }
 
@@ -209,19 +210,21 @@ bool		EventManager::moveSnake(void)
   Direction	currentDir = _snake.getDir();
   int		i = 0;
 
+  _timer.stop();
   while (i < 4)
+  {
+    if (currentDir == go_function[i].d)
     {
-      if (currentDir == go_function[i].d)
-	{
-	  canGoNext = (this->*go_function[i].ptr)(next_m);
-	  break;
-	}
-      ++i;
+      canGoNext = (this->*go_function[i].ptr)(next_m);
+      break;
     }
+    ++i;
+  }
   if (canGoNext)
-    {
-      _snake.move(next_m);
-      return true;
-    }
+  {
+    _snake.move(next_m);
+    _timer.start();
+    return true;
+  }
   return false;
 }

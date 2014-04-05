@@ -27,7 +27,7 @@ int     main(int ac, char **av)
   QApplication    app(ac, av);
   QFrame          *mainFrame = new QFrame;
   GameManager     engine(MAP_SIZE, MAP_SIZE, MAP_UNIT);
-  EventManager    events(*mainFrame, engine, 2);
+  EventManager    events(*mainFrame, engine, 0.75);
   void            *libHandler;
   Canvas          myCanvas;
   new_func        newCanvas;
@@ -36,7 +36,7 @@ int     main(int ac, char **av)
   if (!(libHandler = Library::open("./lib_nibbler_QPaint.dll")))
   {
     std::cerr << Library::error() << std::endl;
-    abort();
+    exit(-1);
   }
   else
     std::cout << "Lib sucessfully loaded" << std::endl;
@@ -44,7 +44,7 @@ int     main(int ac, char **av)
   if (!(newCanvas = reinterpret_cast<new_func>(Library::sym(libHandler, "newCanvas"))))
   {
     std::cerr << Library::error() << std::endl;
-    abort();
+    exit(-1);
   }
   else
     std::cout << "Function loaded" << std::endl;
@@ -52,7 +52,7 @@ int     main(int ac, char **av)
   if (!(showCanvas = reinterpret_cast<show_func>(Library::sym(libHandler, "showCanvas"))))
   {
     std::cerr << Library::error() << std::endl;
-    abort();
+    exit(-1);
   }
   else
     std::cout << "Function loaded" << std::endl;

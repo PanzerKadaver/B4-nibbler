@@ -86,8 +86,8 @@ bool    GameManager::popFood()
   uint                random;
 
   //printMap();
-  for (uint i = 0; i < _land->width(); i++)
-    for (uint j = 0; j < _land->height(); j++)
+  for (uint i = 1; i < _land->width() - 1; i++)
+    for (uint j = 1; j < _land->height() - 1; j++)
       if (_land->getCell(j, i) == 0)
         if (checkAround(j, i))
           empty.push_back(QPoint(j, i));

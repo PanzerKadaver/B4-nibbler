@@ -22,7 +22,7 @@ class EventManager : public QWidget
   Q_OBJECT
 
 public:
-  EventManager(QWidget &parent, GameManager &engine, uint speed);
+  EventManager(QWidget &parent, GameManager &engine, float speed);
   ~EventManager(void) {};
 
   typedef bool	(EventManager::*func)(QPoint &);
