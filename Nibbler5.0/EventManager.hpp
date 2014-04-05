@@ -8,8 +8,8 @@
 // Last update Fri Apr  4 17:43:18 2014 Nathan AUBERT
 //
 
-#ifndef EVENTMANAGER_HPP_
-# define EVENTMANAGER_HPP_
+#ifndef NIBBLER_EVENTMANAGER_HPP_
+# define NIBBLER_EVENTMANAGER_HPP_
 
 #include <QtCore/QtCore>
 #include <QtGui/QtGui>
@@ -74,4 +74,4 @@ protected:
   void digest();
 };
 
-#endif /* !EVENTMANAGER_HPP_ */
+#endif // !NIBBLER_EVENTMANAGER_HPP_

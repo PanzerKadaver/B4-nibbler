@@ -22,7 +22,7 @@ public:
     // Ctor
     QtCanvas(QWidget &parent, const QPoint &pos, const QSize &size, uint frameRate);
     // Dtor
-    virtual ~QtCanvas(void) {};
+    ~QtCanvas(void) {};
 
 protected:
     // Contracts

@@ -15,8 +15,11 @@ RM = rm -f
 CXXFLAGS += -W -Wextra -Wall
 CXXFLAGS += -I/usr/local/SFML-2.1/include/
 
+LDFLAGS += -ldl
 LDFLAGS += -L/usr/local/SFML-2.1/lib/
- LDFLAGS += -ldl
+LDFLAGS += -lsfml-graphics
+LDFLAGS += -lsfml-window
+LDFLAGS += -lsfml-system
 
 NAME = a.out
 

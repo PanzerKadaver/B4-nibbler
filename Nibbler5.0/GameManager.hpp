@@ -23,6 +23,7 @@ private:
   Snake   *_snake;
   Land    *_land;
   uint    _score;
+  QPoint  _old;
 };
 
 #endif /* !NIBLER_GAMEMANAGER_HPP_ */
