@@ -5,12 +5,12 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Thu Apr  3 21:32:51 2014 Nathan AUBERT
-// Last update Thu Apr  3 21:32:51 2014 Nathan AUBERT
+// Last update Sat Apr  5 21:08:15 2014 Nathan AUBERT
 //
 
 #include <iostream>
 
-#include "QtCanvas.hpp"
+#include "include/QtCanvas.hpp"
 
 QtCanvas::QtCanvas(QWidget &parent, const QPoint &pos, const QSize &size, uint frameRate) :
     QWidget(&parent),

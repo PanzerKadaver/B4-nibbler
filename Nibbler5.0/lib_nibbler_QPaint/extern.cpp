@@ -1,4 +1,4 @@
-#include "Canvas.hpp"
+#include "include/Canvas.hpp"
 
 # if defined(__GNUG__)
 # define EXPORT /*Nothing to do here*/

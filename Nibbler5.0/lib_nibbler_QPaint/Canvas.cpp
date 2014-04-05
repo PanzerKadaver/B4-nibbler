@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Canvas.hpp"
+#include "include/Canvas.hpp"
 
 typedef char  **land;
 
