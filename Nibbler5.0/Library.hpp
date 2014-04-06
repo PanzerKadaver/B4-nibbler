@@ -1,3 +1,13 @@
+//
+// Library.hpp for  in /home/aubert_n/rep/nibbler/Nibbler5.0
+// 
+// Made by Nathan AUBERT
+// Login   <aubert_n@epitech.net>
+// 
+// Started on  Sun Apr  6 12:21:01 2014 Nathan AUBERT
+// Last update Sun Apr  6 12:21:17 2014 Nathan AUBERT
+//
+
 #ifndef NIBBLER_LIBRARY_HPP_
 # define NIBBLER_LIBRARY_HPP_
 
@@ -83,4 +93,4 @@ namespace Library
   }
 }
 
-#endif
+#endif /* !NIBBLER_LIBRARY_HPP_ */

@@ -1,3 +1,13 @@
+//
+// Canvas.hpp for  in /home/aubert_n/rep/nibbler/Nibbler5.0/lib_nibbler_SFML
+// 
+// Made by Nathan AUBERT
+// Login   <aubert_n@epitech.net>
+// 
+// Started on  Sun Apr  6 12:22:43 2014 Nathan AUBERT
+// Last update Sun Apr  6 12:22:52 2014 Nathan AUBERT
+//
+
 #ifndef NIBBLER_CANVAS_HPP_
 # define NIBBLER_CANVAS_HPP_
 

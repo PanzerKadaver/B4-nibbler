@@ -1,3 +1,13 @@
+//
+// Snake.hpp for  in /home/aubert_n/rep/nibbler/Nibbler5.0
+// 
+// Made by Nathan AUBERT
+// Login   <aubert_n@epitech.net>
+// 
+// Started on  Sun Apr  6 12:21:34 2014 Nathan AUBERT
+// Last update Sun Apr  6 12:21:35 2014 Nathan AUBERT
+//
+
 #ifndef NIBLER_SNAKE_HPP_
 # define NIBLER_SNAKE_HPP_
 #include <QtCore/QtCore>
