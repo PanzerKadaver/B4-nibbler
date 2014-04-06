@@ -5,7 +5,7 @@
 ## Login   <aubert_n@epitech.net>
 ##
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Sun Apr  6 18:57:27 2014 Nathan AUBERT
+## Last update Sun Apr  6 19:31:01 2014 Nathan AUBERT
 ##
 
 CXX	= g++ -g3
@@ -74,8 +74,5 @@ fclean: clean
 	$(MAKE) -C $(OPENGL) fclean
 
 re:	fclean all
-	$(MAKE) -C $(QT) re
-	$(MAKE) -C $(SFML) re
-	$(MAKE) -C $(OPENGL) re
 
 .PHONY: all clean fclean re

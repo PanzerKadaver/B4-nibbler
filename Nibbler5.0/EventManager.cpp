@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Sun Apr  6 12:14:53 2014 Nathan AUBERT
+// Last update Sun Apr  6 19:27:16 2014 Nathan AUBERT
 //
 
 #include <iostream>
@@ -49,7 +49,9 @@ void EventManager::resetDir()
 
 void EventManager::keyTopAction()
 {
-  if (_snake.getDir() == BOTTOM || _snake.isDie())
+  if (_snake.getDir() == BOTTOM
+      || _snake.getDir() == TOP
+      || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(TOP);
@@ -60,7 +62,9 @@ void EventManager::keyTopAction()
 
 void EventManager::keyBotAction()
 {
-  if (_snake.getDir() == TOP || _snake.isDie())
+  if (_snake.getDir() == TOP
+      || _snake.getDir() == BOTTOM
+      || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(BOTTOM);
@@ -70,7 +74,9 @@ void EventManager::keyBotAction()
 
 void EventManager::keyLeftAction()
 {
-  if (_snake.getDir() == RIGHT || _snake.isDie())
+  if (_snake.getDir() == RIGHT
+      || _snake.getDir() == LEFT
+      || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(LEFT);
@@ -80,7 +86,9 @@ void EventManager::keyLeftAction()
 
 void EventManager::keyRightAction()
 {
-  if (_snake.getDir() == LEFT || _snake.isDie())
+  if (_snake.getDir() == LEFT
+      || _snake.getDir() == RIGHT
+      || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(RIGHT);
