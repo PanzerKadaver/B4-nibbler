@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Sun Apr  6 00:06:22 2014 Nathan AUBERT
+// Last update Sun Apr  6 12:14:53 2014 Nathan AUBERT
 //
 
 #include <iostream>
@@ -49,7 +49,7 @@ void EventManager::resetDir()
 
 void EventManager::keyTopAction()
 {
-  if (_snake.getDir() == BOTTOM)
+  if (_snake.getDir() == BOTTOM || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(TOP);
@@ -60,7 +60,7 @@ void EventManager::keyTopAction()
 
 void EventManager::keyBotAction()
 {
-  if (_snake.getDir() == TOP)
+  if (_snake.getDir() == TOP || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(BOTTOM);
@@ -70,7 +70,7 @@ void EventManager::keyBotAction()
 
 void EventManager::keyLeftAction()
 {
-  if (_snake.getDir() == RIGHT)
+  if (_snake.getDir() == RIGHT || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(LEFT);
@@ -80,7 +80,7 @@ void EventManager::keyLeftAction()
 
 void EventManager::keyRightAction()
 {
-  if (_snake.getDir() == LEFT)
+  if (_snake.getDir() == LEFT || _snake.isDie())
     return;
   _timer.stop();
   _snake.setDir(RIGHT);
@@ -88,11 +88,46 @@ void EventManager::keyRightAction()
     _timer.start();
 }
 
+void EventManager::keyLeftDirAction()
+{
+  _timer.stop();
+  if (_snake.isDie())
+    return;
+  else if (_snake.getDir() == RIGHT)
+    _snake.setDir(TOP);
+  else
+    _snake.setDir(static_cast<Direction>(_snake.getDir() - 1));
+  if (moveSnake())
+    _timer.start();
+}
+
+void EventManager::keyRightDirAction()
+{
+  _timer.stop();
+  if (_snake.isDie())
+    return;
+  else if (_snake.getDir() == TOP)
+    _snake.setDir(RIGHT);
+  else
+    _snake.setDir(static_cast<Direction>(_snake.getDir() + 1));
+  if (moveSnake())
+    _timer.start();
+}
+
+void EventManager::keyEscapeAction()
+{
+  QApplication::quit();
+}
+
 EventManager::key_tab	go_dir[] = {
   { Qt::Key_Z, &EventManager::keyTopAction },
   { Qt::Key_Q, &EventManager::keyLeftAction },
   { Qt::Key_D, &EventManager::keyRightAction },
-  { Qt::Key_S, &EventManager::keyBotAction }
+  { Qt::Key_Left, &EventManager::keyLeftDirAction },
+  { Qt::Key_Right, &EventManager::keyRightDirAction },
+  { Qt::Key_S, &EventManager::keyBotAction },
+  { Qt::Key_Escape, &EventManager::keyEscapeAction },
+  { static_cast<Qt::Key>(0), NULL}
 };
 
 void    EventManager::keyPressEvent(QKeyEvent *e)
@@ -100,10 +135,7 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
   int	i = 0;
 
   e->accept();
-  if (_snake.isDie())
-    return;
-
-  while (i < 4)
+  while (go_dir[i].ptr != NULL)
   {
     if (e->key() == go_dir[i].key)
     {
@@ -116,7 +148,7 @@ void    EventManager::keyPressEvent(QKeyEvent *e)
 
 bool EventManager::isOutside(const QPoint &next_s)
 {
-  if ((uint)next_s.x() >= _land.width() || next_s.x() < 0 || (uint)next_s.y() >= _land.height() || next_s.y() < 0)
+  if (static_cast<uint>(next_s.x()) >= _land.width() || next_s.x() < 0 || static_cast<uint>(next_s.y()) >= _land.height() || next_s.y() < 0)
   {
     _snake.die();
     _timer.stop();

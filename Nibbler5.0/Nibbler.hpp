@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Thu Apr  3 19:52:46 2014 Nathan AUBERT
-// Last update Thu Apr  3 19:52:46 2014 Nathan AUBERT
+// Last update Sun Apr  6 12:02:37 2014 Nathan AUBERT
 //
 
 #ifndef NIBBLER_HPP_
@@ -15,10 +15,10 @@
 
 enum Direction
 {
-  RIGHT,
-  BOTTOM,
-  LEFT,
-  TOP
+  RIGHT = 0,
+  BOTTOM = 1,
+  LEFT = 2,
+  TOP = 3
 };
 
 #endif /* !NIBBLER_HPP_ */

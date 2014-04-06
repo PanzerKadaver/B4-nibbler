@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:38 2014 alois
-// Last update Fri Apr  4 17:43:18 2014 Nathan AUBERT
+// Last update Sun Apr  6 12:07:40 2014 Nathan AUBERT
 //
 
 #ifndef NIBBLER_EVENTMANAGER_HPP_
@@ -48,6 +48,9 @@ public:
   void	keyBotAction();
   void	keyLeftAction();
   void	keyRightAction();
+  void	keyLeftDirAction();
+  void	keyRightDirAction();
+  void	keyEscapeAction();
 
   void  start();
 
