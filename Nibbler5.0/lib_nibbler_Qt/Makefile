@@ -5,13 +5,13 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Sat Apr  5 21:00:53 2014 Nathan AUBERT
-## Last update Sun Apr  6 16:43:40 2014 Nathan AUBERT
+## Last update Sun Apr  6 17:12:38 2014 Nathan AUBERT
 ##
 
 CXX	=	g++
 RM	=	rm -f
-BIN	=	lib_nibbler_QPaint_$(HOSTTYPE).so
-LN	=	lib_nibbler_QPaint.so
+BIN	=	lib_nibbler_Qt_$(HOSTTYPE).so
+LN	=	../lib_nibbler_Qt.so
 I_DIR	=	include
 
 CXXFLAGS +=	-W -Wall -Wextra
@@ -34,7 +34,7 @@ $(BIN):	$(OBJS)
 	@echo -e "\E[33;33mCompiling Qt library...\E[33;37m"
 	$(CXX) -shared -o $(BIN) $(OBJS) $(LDFLAGS) 
 	@echo -e "\E[33;33mLinking Qt library...\E[33;37m"
-	ln -sf $(BIN) $(LN)
+	ln -sf ./lib_nibbler_Qt/$(BIN) $(LN)
 
 all:	$(BIN)
 

@@ -5,13 +5,13 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Sat Apr  5 22:56:28 2014 Nathan AUBERT
-## Last update Sun Apr  6 16:28:20 2014 Nathan AUBERT
+## Last update Sun Apr  6 17:10:55 2014 Nathan AUBERT
 ##
 
 CXX	=	g++
 RM	=	rm -f
 BIN	=	lib_nibbler_SFML_$(HOSTTYPE).so
-LN	=	lib_nibbler_SFML.so
+LN	=	../lib_nibbler_SFML.so
 I_DIR	=	include
 
 CXXFLAGS +=	-W -Wall -Wextra
@@ -24,10 +24,10 @@ LDFLAGS	+=	-L/usr/local/Trolltech/Qt-4.8.5/lib
 LDFLAGS	+=	-lQtGui
 LDFLAGS	+=	-lQtCore
 LDFLAGS	+=	-L/usr/local/SFML-2.1/lib
-LDFLAGS +=	-lsfml-graphics
-LDFLAGS +=	-lsfml-window
-LDFLAGS +=	-lsfml-system
-LDFLAGS +=	-ldl
+LDFLAGS	+=	-lsfml-graphics
+LDFLAGS	+=	-lsfml-window
+LDFLAGS	+=	-lsfml-system
+LDFLAGS	+=	-ldl
 
 SRCS	=	extern.cpp \
 		Canvas.cpp \
@@ -39,7 +39,7 @@ $(BIN):	$(OBJS)
 	@echo -e "\E[33;35mCompiling SFML library...\E[33;37m"
 	$(CXX) -shared -o $(BIN) $(OBJS) $(LDFLAGS) 
 	@echo -e "\E[33;35mLinking SFML library...\E[33;37m"
-	ln -sf $(BIN) $(LN)
+	ln -sf ./lib_nibbler_SFML/$(BIN) $(LN)
 
 all:	$(BIN)
 
