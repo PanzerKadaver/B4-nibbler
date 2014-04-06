@@ -34,9 +34,9 @@ private:
   const SnakeBody &_body;
   const Direction &_dir;
   const bool      &_die;
+  const land      &_land;
   uint            _width;
   uint            _height;
-  const land      &_land;
 
   sf::Texture     _land_tex;
   sf::Texture     _head_tex;

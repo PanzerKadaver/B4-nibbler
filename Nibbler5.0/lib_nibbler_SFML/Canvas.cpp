@@ -1,3 +1,13 @@
+//
+// Canvas.cpp for  in /home/aubert_n/rep/nibbler/Nibbler5.0/lib_nibbler_SFML
+// 
+// Made by Nathan AUBERT
+// Login   <aubert_n@epitech.net>
+// 
+// Started on  Sun Apr  6 11:06:55 2014 Nathan AUBERT
+// Last update Sun Apr  6 11:07:38 2014 Nathan AUBERT
+//
+
 #include <iostream>
 
 #include "Canvas.hpp"
@@ -10,9 +20,7 @@ Canvas::Canvas(QWidget &parent, const QPoint &pos, const QSize &size, const QPoi
   _body(b),
   _dir(d),
   _die(die),
-  _land(l),
-  _width(size.width()),
-  _height(size.height())
+  _land(l)
 {
   _width = size.width() / MAP_UNIT;
   _height = size.height() / MAP_UNIT;
@@ -74,13 +82,11 @@ void    Canvas::DrawSnakeBody()
 
   while (i < _body.size())
   {
-    sf::Sprite  _body_s;
-    qreal     size = MAP_UNIT;
-    QPoint  pos((_body[i].x() * MAP_UNIT) - MAP_UNIT / 2, (_body[i].y() * MAP_UNIT) - MAP_UNIT / 2);
+    sf::Sprite	_body_s;
+    QPoint	pos((_body[i].x() * MAP_UNIT) - MAP_UNIT / 2, (_body[i].y() * MAP_UNIT) - MAP_UNIT / 2);
 
     _body_s.setTexture(_body_tex);
     _body_s.setPosition(pos.x(), pos.y());
-
     draw(_body_s);
 
     ++i;
@@ -90,8 +96,8 @@ void    Canvas::DrawSnakeBody()
 
 void    Canvas::DrawSnakeHead()
 {
-  QPoint  pos((_head.x() * MAP_UNIT) + MAP_UNIT / 2, (_head.y() * MAP_UNIT) + MAP_UNIT / 2);
-  sf::Sprite  _head_s;
+  QPoint	pos((_head.x() * MAP_UNIT) + MAP_UNIT / 2, (_head.y() * MAP_UNIT) + MAP_UNIT / 2);
+  sf::Sprite	_head_s;
 
   _head_s.setTexture(_head_tex);
   _head_s.setPosition(pos.x(), pos.y());

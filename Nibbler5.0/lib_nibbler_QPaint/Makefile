@@ -5,7 +5,7 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Sat Apr  5 21:00:53 2014 Nathan AUBERT
-## Last update Sat Apr  5 22:50:34 2014 Nathan AUBERT
+## Last update Sun Apr  6 11:04:53 2014 Nathan AUBERT
 ##
 
 CXX	=	g++
@@ -14,10 +14,9 @@ BIN	=	lib_nibbler_QPaint_$(HOSTTYPE).so
 LN	=	lib_nibbler_QPaint.so
 I_DIR	=	include
 
-CXXFLAGS	+=	-W -Wall -Wextra #-Werror
-#CXXFLAGS	+=	-ansi -pedantic
-CXXFLAGS	+=	-fPIC #-Wpadded
-CXXFLAGS  +=  -I. -I../
+CXXFLAGS	+=	-W -Wall -Wextra
+CXXFLAGS	+=	-fPIC
+CXXFLAGS	+=	-I. -I../
 CXXFLAGS	+=	-I/usr/local/Trolltech/Qt-4.8.5/include                                          
 
 LDFLAGS	+=	-L/usr/local/Trolltech/Qt-4.8.5/lib/
