@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:20 2014 alois
-// Last update Sun Apr  6 19:27:16 2014 Nathan AUBERT
+// Last update Sun Apr  6 19:38:33 2014 Nathan AUBERT
 //
 
 #include <iostream>
@@ -177,10 +177,16 @@ bool EventManager::isEatingHimself(const QPoint &next_s, const QPoint &next_m)
     return true;
 }
 
-void EventManager::digest()
+bool EventManager::digest()
 {
-  _engine.popFood();
+  if (!_engine.popFood())
+    {
+      _snake.die();
+      _timer.stop();
+      return false;
+    }
   _snake.addBody();
+  return true;
 }
 
 bool  EventManager::checkNext(const QPoint &next_m, const QPoint &next_f, const QPoint &next_s, const QPoint &next_t)
@@ -190,17 +196,17 @@ bool  EventManager::checkNext(const QPoint &next_m, const QPoint &next_f, const 
   if (_land.getCell(next_f) == 'f')
   {
     _land.getCell(next_f) = 0;
-    digest();
+    return (digest());
   }
   else if (_land.getCell(next_s) == 'f')
   {
     _land.getCell(next_s) = 0;
-    digest();
+    return (digest());
   }
   else if (_land.getCell(next_t) == 'f')
   {
     _land.getCell(next_t) = 0;
-    digest();
+    return (digest());
   }
   return true;
 }

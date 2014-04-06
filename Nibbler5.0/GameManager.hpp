@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Sun Apr  6 12:20:51 2014 Nathan AUBERT
-// Last update Sun Apr  6 12:20:52 2014 Nathan AUBERT
+// Last update Sun Apr  6 19:33:31 2014 Nathan AUBERT
 //
 
 #ifndef NIBLER_GAMEMANAGER_HPP_
@@ -27,7 +27,6 @@ public:
   bool  checkAround(uint, uint) const;
   bool  popFood();
   void  addScore(uint);
-  void  printMap();
 
 private:
   Snake   *_snake;

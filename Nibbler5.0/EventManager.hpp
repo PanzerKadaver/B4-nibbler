@@ -5,7 +5,7 @@
 // Login   <alois@epitech.net>
 // 
 // Started on  Thu Apr  3 19:06:38 2014 alois
-// Last update Sun Apr  6 12:07:40 2014 Nathan AUBERT
+// Last update Sun Apr  6 19:38:43 2014 Nathan AUBERT
 //
 
 #ifndef NIBBLER_EVENTMANAGER_HPP_
@@ -76,7 +76,7 @@ protected:
   void keyAction(Direction, bool);
   bool isOutside(const QPoint &);
   bool isEatingHimself(const QPoint &, const QPoint &);
-  void digest();
+  bool digest();
 };
 
 #endif // !NIBBLER_EVENTMANAGER_HPP_
