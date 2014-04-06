@@ -94,7 +94,7 @@ int     run(int ac, char **av, int width, int height, const std::string &path)
 
   mainFrame->setWindowTitle("Nibbler");
   mainFrame->resize(QSize(width * MAP_UNIT + 1, height * MAP_UNIT + 1));
-  mainFrame->move(0, 0);
+  //mainFrame->move(0, 0);
   mainFrame->show();
 
   showCanvas(myCanvas);
