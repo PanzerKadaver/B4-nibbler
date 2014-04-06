@@ -1,3 +1,13 @@
+//
+// Canvas.cpp for  in /home/aubert_n/rep/nibbler/Nibbler5.0/lib_nibbler_QPaint
+// 
+// Made by Nathan AUBERT
+// Login   <aubert_n@epitech.net>
+// 
+// Started on  Sun Apr  6 11:10:15 2014 Nathan AUBERT
+// Last update Sun Apr  6 11:10:16 2014 Nathan AUBERT
+//
+
 #include <iostream>
 
 #include "Canvas.hpp"
@@ -25,7 +35,6 @@ void    Canvas::OnUpdate(QPainter &painter)
 {
   DrawMap(painter);
   DrawSnakeBody(painter);
-  //DrawSnakeTongue(painter, QPoint(12, 10), RIGHT);
   DrawSnakeHead(painter);
   if (_die)
     _t.stop();
@@ -53,42 +62,27 @@ void    Canvas::DrawFood(QPainter &painter, const QPoint &p)
   painter.drawEllipse(p.x() * MAP_UNIT, p.y() * MAP_UNIT, MAP_UNIT, MAP_UNIT);
 }
 
-void    Canvas::DrawSnakeBody(QPainter &painter)
+void	Canvas::DrawSnakeBody(QPainter &painter)
 {
   QColor  yellow(qRgb(254, 231, 0));
   uint    i = 0;
-  qreal   delta = ((MAP_UNIT * 3) - MAP_UNIT) / ((qreal)_body.size());
-
-  //std::cout << "Delta body : " << delta << std::endl;
 
   painter.setBrush(yellow);
   while (i < _body.size())
   {
-    //qreal     size = ((MAP_UNIT) + (delta * i)) / 2;
-    qreal       size = MAP_UNIT;
-    QPointF   pos = QPointF(_body[i].x() * MAP_UNIT + MAP_UNIT / 2 , _body[i].y() * MAP_UNIT + MAP_UNIT / 2);
+    qreal	size = MAP_UNIT;
+    QPointF	pos = QPointF(_body[i].x() * MAP_UNIT + MAP_UNIT / 2 , _body[i].y() * MAP_UNIT + MAP_UNIT / 2);
     painter.drawEllipse(pos, size, size);
-    //std::cout << "Body[" << i << "] C(" << body[i].x() << "/" << body[i].y() << ") P(" << pos.x() << "/" << pos.y() << ") S(" << size << ")" << std::endl;
     ++i;
   };
-  //system("PAUSE");
 }
 
-void    Canvas::DrawSnakeTongue(QPainter &painter)
-{
-  /*painter.setBrush(QBrush(black_yellow));
-  painter.drawEllipse(40, 25, MAP_UNIT * 2.5, MAP_UNIT * 2.5);
-  painter.setBrush(QBrush(red));
-  painter.drawEllipse(70, 40, MAP_UNIT, MAP_UNIT);*/
-}
-
-// not sure of the type of pos.x() and pos.y()
 static uint calcPos(uint pos, uint u, bool b)
 {
   return pos * u + u - (u * b + u / 4);
 }
 
-void    Canvas::DrawSnakeHead(QPainter &painter)
+void		Canvas::DrawSnakeHead(QPainter &painter)
 {
   QColor	yellow(qRgb(254, 231, 0));
   QColor	black(qRgb(0, 0, 0));
