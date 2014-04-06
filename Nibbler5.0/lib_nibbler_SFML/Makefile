@@ -5,7 +5,7 @@
 ## Login   <aubert_n@epitech.net>
 ## 
 ## Started on  Sat Apr  5 22:56:28 2014 Nathan AUBERT
-## Last update Sun Apr  6 11:14:33 2014 Nathan AUBERT
+## Last update Sun Apr  6 11:44:46 2014 Nathan AUBERT
 ##
 
 CXX	=	g++
@@ -14,13 +14,13 @@ BIN	=	lib_nibbler_SFML_$(HOSTTYPE).so
 LN	=	lib_nibbler_SFML.so
 I_DIR	=	include
 
-CXXFLAGS	+=	-W -Wall -Wextra
-CXXFLAGS	+=	-fPIC
-CXXFLAGS	+=	-I. -I../
-CXXFLAGS	+=	-I/usr/local/SFML-2.1/include
-CXXFLAGS	+=	-I/usr/local/Trolltech/Qt-4.8.5/include
+CXXFLAGS +=	-W -Wall -Wextra
+CXXFLAGS +=	-fPIC
+CXXFLAGS +=	-I. -I../
+CXXFLAGS +=	-I/usr/local/SFML-2.1/include
+CXXFLAGS +=	-I/usr/local/Trolltech/Qt-4.8.5/include
 
-LDFLAGS	+=	-L/usr/local/Trolltech/Qt-4.8.5/lib/
+LDFLAGS	+=	-L/usr/local/Trolltech/Qt-4.8.5/lib
 LDFLAGS	+=	-lQtGui
 LDFLAGS	+=	-lQtCore
 LDFLAGS	+=	-L/usr/local/SFML-2.1/lib
