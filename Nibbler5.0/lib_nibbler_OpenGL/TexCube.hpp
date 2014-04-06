@@ -22,8 +22,8 @@ private:
   float   _r;
   float   _g;
   float   _b;
-  std::array<Point3D, 8> _vertex;
-  std::array<QPoint, 8> _tex;
+  std::vector<Point3D> _vertex;
+  std::vector<QPoint> _tex;
 };
 
 #endif // !NIBBLER_TEXCUBE_HPP_

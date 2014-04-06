@@ -114,7 +114,6 @@ void    Canvas::DrawSnakeBody()
   while (i < _body.size())
   {
     QPoint pos (_body[i].x() * 0.5f, _body[i].y() * 0.5f);
-
     Cube c(-1.f * pos.x(), -4.0f, -1.f * pos.y(), 0.5f, 1.f, 1.f, 0.f);
 
     c.draw();
@@ -126,7 +125,6 @@ void    Canvas::DrawSnakeBody()
 void    Canvas::DrawSnakeHead()
 {
   QPoint	pos((_head.x() * 0.5f) + 0.5f / 2, (_head.y() * 0.5f) + 0.5f / 2);
-
   Cube    c(-1.f * pos.x(), -4.0f,  -1.f * pos.y(), 0.75f, 1.f, 1.f, 0.f);
 
   c.draw();

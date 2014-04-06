@@ -2,7 +2,7 @@
 # define NIBBLER_CUBE_HPP_
 
 #include <QtGui/QtGui>
-#include <array>
+#include <vector>
 
 #include "Point3D.hpp"
 
@@ -22,7 +22,7 @@ private:
   float   _r;
   float   _g;
   float   _b;
-  std::array<Point3D, 8> _vertex;
+  std::vector<Point3D> _vertex;
 };
 
 #endif // !NIBBLER_CUBE_HPP_

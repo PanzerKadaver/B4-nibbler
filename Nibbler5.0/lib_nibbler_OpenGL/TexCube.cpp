@@ -13,14 +13,14 @@ TexCube::TexCube(float x, float y, float z, float s, float r, float g, float b, 
   _g(g),
   _b(b)
 {
-  _vertex[0] = Point3D(-1 * s, -1 * s, s);
-  _vertex[1] = Point3D(-1 * s,  s, s);
-  _vertex[2] = Point3D( s,  s, s);
-  _vertex[3] = Point3D( s, -1 * s, s);
-  _vertex[4] = Point3D(-1 * s, -1 * s, -1 * s);
-  _vertex[5] = Point3D(-1 * s,  s, -1 * s);
-  _vertex[6] = Point3D( s,  s, -1 * s);
-  _vertex[7] = Point3D( s, -1 * s, -1 * s);
+  _vertex.push_back(Point3D(-1 * s, -1 * s, s));
+  _vertex.push_back(Point3D(-1 * s,  s, s));
+  _vertex.push_back(Point3D( s,  s, s));
+  _vertex.push_back(Point3D( s, -1 * s, s));
+  _vertex.push_back(Point3D(-1 * s, -1 * s, -1 * s));
+  _vertex.push_back(Point3D(-1 * s,  s, -1 * s));
+  _vertex.push_back(Point3D( s,  s, -1 * s));
+  _vertex.push_back(Point3D( s, -1 * s, -1 * s));
 }
 
 void  TexCube::draw()
