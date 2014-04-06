@@ -5,17 +5,8 @@
 ## Login   <aubert_n@epitech.net>
 ##
 ## Started on  Fri Mar 21 14:07:56 2014 Nathan AUBERT
-## Last update Sun Apr  6 16:42:37 2014 Nathan AUBERT
+## Last update Sun Apr  6 17:02:45 2014 Nathan AUBERT
 ##
-
-NO_COLOR	= \x1b[0m
-OK_COLOR	= \x1b[32;01m
-ERROR_COLOR	= \x1b[31;01m
-WARN_COLOR	= \x1b[33;01m
-
-OK_STRING	= $(OK_COLOR)[OK]$(NO_COLOR)
-ERROR_STRING	= $(ERROR_COLOR)[ERRORS]$(NO_COLOR)
-WARN_STRING	= $(WARN_COLOR)[WARNINGS]$(NO_COLOR)
 
 CXX	= g++ -g3
 

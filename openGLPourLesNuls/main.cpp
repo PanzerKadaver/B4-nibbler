@@ -5,7 +5,7 @@
 // Login   <aubert_n@epitech.net>
 // 
 // Started on  Sat Apr  5 16:17:40 2014 Nathan AUBERT
-// Last update Sun Apr  6 13:47:05 2014 Nathan AUBERT
+// Last update Sun Apr  6 16:54:52 2014 Nathan AUBERT
 //
 
 #include <SFML/Window.hpp>
@@ -67,7 +67,7 @@ void	clear_buffer()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   // MatrixMode(GL_MODELVIEW);
   glLoadIdentity(); 
-  gluLookAt(3,4,5, 0,0,0, 0,0,1);
+  // gluLookAt(3,4,5, 0,0,0, 0,0,1);
   gluPerspective(45.0f, 800.0f / 600.0f, 1.0f, 500.0f);
 }
    
