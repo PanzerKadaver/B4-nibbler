@@ -9,7 +9,7 @@
 class TexCube
 {
 public:
-  TexCube(float, float, float, float, float, float, float, uint);
+  TexCube(float, float, float, float, uint);
   ~TexCube(void) {};
 
   void  draw();
@@ -19,11 +19,9 @@ private:
   float   _y;
   float   _z;
   float   _s;
-  float   _r;
-  float   _g;
-  float   _b;
+  uint    _id;
   std::vector<Point3D> _vertex;
-  std::vector<QPoint> _tex;
+  std::vector<QPointF> _tex;
 };
 
 #endif // !NIBBLER_TEXCUBE_HPP_
